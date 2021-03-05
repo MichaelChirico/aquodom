@@ -25,8 +25,8 @@ GetDomainTableNames <- function(pCheckDate = toString(Sys.Date())) {
   return(domeintabellen)
 }
 
-View(GetDomainTableNames() )
-GetDomainTableNames()$kolommen[[1]]
-
-nrow(GetDomainTableNames()) == 132
-nrow(GetDomainTableNames("2020-01-01")) == 127
+# View(GetDomainTableNames() )
+# GetDomainTableNames()$kolommen[[1]]
+#
+# nrow(GetDomainTableNames()) == 132
+# nrow(GetDomainTableNames("2020-01-01")) == 127
