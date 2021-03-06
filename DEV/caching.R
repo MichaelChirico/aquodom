@@ -19,8 +19,8 @@ domeintabel_namen <- function(peildatum = NULL){
 
 
 
-system.time(
-  y <- domeintabel_namen("2020-01-01")
+x <- system.time(
+  domeintabel_namen("2020-01-01")
 )
 
 # domeintabel_namen <- function(peildatum = NULL){
