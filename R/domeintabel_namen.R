@@ -44,8 +44,9 @@ is_domeintabel <- function(namen, peildatum = NULL){
 
 
 
-domeintabel_guid <- function(domeintabel){
-  overzicht <- domeintabel_namen()
+domeintabel_guid <- function(namen, peildatum = NULL){
+  overzicht <- domeintabel_namen(peildatum)
+
 
 
 }
