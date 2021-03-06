@@ -46,7 +46,9 @@ is_domeintabel <- function(namen, peildatum = NULL){
 
 domeintabel_guid <- function(namen, peildatum = NULL){
   overzicht <- domeintabel_namen(peildatum)
-
-
+  tibble::tibble(namen = namen) %>%
+    dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
+    dplyr::pull(guid) %>%
+    unname()
 
 }

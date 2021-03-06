@@ -23,4 +23,6 @@ Imports:
     httr,
     purrr,
     memoise,
-    cachem
+    cachem,
+    magrittr,
+    dplyr
