@@ -1,3 +1,6 @@
+# pDomeintabel <- "Hoedanigheid"
+# pCheckDate <- toString(Sys.Date())
+
 GetDomainTable <- function(pDomeintabel, pCheckDate = toString(Sys.Date())) {
   message(paste("pCheckDate", pCheckDate))
   library(jsonlite)
@@ -42,6 +45,9 @@ GetDomainTable <- function(pDomeintabel, pCheckDate = toString(Sys.Date())) {
     domeinwaardeCategorie["Domeintabeltechnisch"] <- "DomeinwaardenTechnisch"
     domeinwaardeCategorie["Domeintabelverzamellijst"] <- "Domeinwaarden"
 
+    # ophalen guid
+    # elementtype = domeintabelsoort
+    # Metadata = kolomkoppen
     lAantalDomTabellen <- length(domeinTabel)
     if (lAantalDomTabellen == 1) {
       domeinGuid <- domeinTabel[[1]]$fulltext
