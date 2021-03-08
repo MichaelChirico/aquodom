@@ -60,3 +60,25 @@ domeintabel_guid <- function(namen, peildatum = NULL){
 
 }
 
+domeintabel_elementtype <- function(namen, peildatum = NULL){
+  overzicht <- domeintabel_namen(peildatum)
+  tibble::tibble(namen = namen) %>%
+    dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
+    dplyr::pull(domeintabelsoort) %>%
+    unname()
+
+}
+
+domeintabel_kolomnamen <- function(naam, peildatum = NULL){
+  if (length(naam) > 1) stop("'naam' dient een vector met lengte 1 te zijn")
+
+  if (!is_domeintabel(naam, peildatum)) stop(paste(naam, "is geen geldige domeintabelnaam"))
+
+  overzicht <- domeintabel_namen(peildatum)
+
+  overzicht %>%
+    dplyr::filter(domeintabel == naam) %>%
+    dplyr::pull(kolommen) %>%
+    .[[1]]
+
+}
