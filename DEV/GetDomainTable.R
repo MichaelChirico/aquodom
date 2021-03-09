@@ -1,4 +1,5 @@
 pDomeintabel <- "Hoedanigheid"
+pDomeintabel <- "MonsterType"
 pCheckDate <- toString(Sys.Date())
 peildatum <- toString(Sys.Date())
 
@@ -38,20 +39,22 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
 
   kenmerken <- paste0("%2F-3F", lMetadata, collapse = "")
 
-  columnNames <- list(lMetadata)
-  for (i in 1:length(lMetadata)) columnNames[[i]] <- lMetadata[i]
-  columnNames[[length(columnNames) + 1]] <- "Guid"
+  #domValuesDFloc zou anders moeten
+
+  columnNames <- as.list(c(lMetadata, "Guid"))
+  # for (i in 1:length(lMetadata)) columnNames[[i]] <- lMetadata[i]
+  # columnNames[[length(columnNames) + 1]] <- "Guid"
   domValuesDFloc <- data.frame(matrix(ncol = length(lMetadata) + 1, nrow = 0))
   colnames(domValuesDFloc) <- columnNames
 
   lOffset <- 0
-  lLimit <- 500
+  lLimit <- 5
   lDoorgaan <- TRUE
+  json_res <- list()
   while (lDoorgaan) {
-    opmaakJson <- paste("/format%3Djson/link%3Dall/headers%3Dshow/searchlabel=JSON/class=sortable-20wikitable-20smwtable",
-                        "/sort%3DId/order%3Dasc",
-                        "/theme=bootstrap/offset=", lOffset, "/limit=", lLimit,
-                        "/mainlabel=/prettyprint=true/unescape=true",
+    opmaakJson <- paste("/format%3Djson/headers%3Dshow/searchlabel=JSON",
+                        "/offset=", lOffset, "/limit=", lLimit,
+                        "/unescape=true",
                         sep = ""
     )
     json_file <- paste0(tekstUrl, categorie, beperking, kenmerken, opmaakJson)
@@ -62,6 +65,7 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
       tryCatch(
         {
           domValuesJson <- jsonlite::fromJSON(httr::content(req, "text", encoding = "UTF-8"))$results
+          json_res <- c(json_res, domValuesJson)
           # message(length(domValuesJson))
           message(paste(toString(Sys.time()), "Aantal waarden opgehaald:", length(domValuesJson) + lOffset, sep = " "))
         },
@@ -129,6 +133,7 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
   # domValuesDFloc <- domValuesDFloc2
 
   return(domValuesDFloc)
+  # return(json_res)
 }
 
 GetDomainTable("MonsterType")
