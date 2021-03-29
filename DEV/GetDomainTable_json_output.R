@@ -11,12 +11,12 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
 
   # toevoegen check is_domeintabel
 
-  bewerkDatum <- function(pDatum) {
-    lDatum <- substring(toString(pDatum), 3, nchar(pDatum))
-    lDatum <- stringr::str_replace(lDatum, "/0/0/0/0", "")
-    lDatum <- toString(lubridate::parse_date_time(lDatum, orders = "ymd"))
-    return(lDatum)
-  }
+  # bewerkDatum <- function(pDatum) {
+  #   lDatum <- substring(toString(pDatum), 3, nchar(pDatum))
+  #   lDatum <- stringr::str_replace(lDatum, "/0/0/0/0", "")
+  #   lDatum <- toString(lubridate::parse_date_time(lDatum, orders = "ymd"))
+  #   return(lDatum)
+  # }
 
   tekstUrl <- "https://www.aquo.nl/index.php"
 
@@ -39,7 +39,7 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
   kenmerken <- paste0("%2F-3F", lMetadata, collapse = "")
 
   lOffset <- 0
-  lLimit <- 5
+  lLimit <- 500
   lDoorgaan <- TRUE
   json_res <- list()
   while (lDoorgaan) {
@@ -66,7 +66,53 @@ GetDomainTable <- function(pDomeintabel, peildatum = toString(Sys.Date())) {
     }
   }
 
-  return(json_res)
+  # return(json_res)
+  extract_dom_table(json_res)
 }
 
-GetDomainTable("MonsterType") %>% View("json_output")
+GetDomainTable("MonsterType")
+GetDomainTable("Hoedanigheid")
+
+conv_timestamp <- function(timestamp){
+  timestamp %>%
+    as.numeric() %>%
+    as.POSIXct(origin = as.POSIXct("1970-01-01 00:00:00"), tz = "CET") %>%
+    lubridate::as_date()
+}
+
+extract_dom_table <- function(x) {
+
+    tibble::tibble(x) %>%
+    tidyr::unnest_wider(x) %>%
+    dplyr::rename(Guid = fulltext) %>%
+    dplyr::select(printouts, Guid) %>%
+    tidyr::unnest_wider(printouts) %>%
+    dplyr::mutate(`Begin geldigheid` = purrr::map_chr(`Begin geldigheid`, "timestamp") %>% conv_timestamp(),
+                  `Eind geldigheid` = purrr::map_chr(`Eind geldigheid`, "timestamp") %>% conv_timestamp()) %>%
+    dplyr::relocate(matches("^Id$")) %>%
+    dplyr::select(-dplyr::any_of("Gerelateerd"))
+
+
+
+    # tidyr::unnest_wider(`Begin geldigheid`) %>%
+    # dplyr::mutate(`Begin geldigheid` = conv_timestamp(timestamp)) %>%
+    # dplyr::select(-timestamp, -raw) %>%
+    # tidyr::unnest_wider(`Eind geldigheid`) %>%
+    # dplyr::mutate(`Eind geldigheid` = conv_timestamp(timestamp)) %>%
+    # dplyr::select(-timestamp, -raw) %>%
+    # tidyr::hoist(Gerelateerd, "fulltext")
+
+}
+
+extract_dom_table(x)
+tibble::tibble(y)
+
+
+GetDomainTable("Bemonsteringsapparaat")
+GetDomainTable("Bemonsteringsapparaat")
+z_old <- GetDomainTable_old("Waarnemingssoort") %>% tibble::tibble()
+
+GetDomainTable("Parameter")
+z <- GetDomainTable("Waarnemingssoort")
+b <- GetDomainTable("Biotaxon")
+b_old <- GetDomainTable_old("Biotaxon")
