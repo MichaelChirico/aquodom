@@ -4,7 +4,7 @@ test_that("domeintabel_namen_basis", {
   # skip("Duurt relatief lang")
   skip_on_cran()
 
-  expect_equal(nrow(domeintabel_namen_basis("2020-01-01")), 127)
+  expect_gt(nrow(domeintabel_namen_basis()), 250)
 })
 
 test_that("Caching domeintabel_namen", {

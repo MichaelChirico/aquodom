@@ -8,10 +8,9 @@ conv_timestamp <- function(timestamp){
 
 domeintabel_namen_basis <- function() {
 
-
   # Query samenstellen
   tekstUrl <- "https://www.aquo.nl/index.php"
-  opmaakJson <- paste0("%2F&format=json")
+  opmaakJson <- paste0("%2F&format=json&offset=0&limit=500")
   categorie <- "?title=Speciaal:Vragen&x=%5B%5BElementtype%3A%3ADomeintabel%20%7C%7C%20Domeintabeltechnisch%20%7C%7C%20Domeintabelverzamellijst%5D%5D%20"
   kenmerken <- "%2F%3FElementtype%2F%3FVoorkeurslabel%2F%3FMetadata%2F%3FWijzigingsdatum%2F%3FBegin%20geldigheid%2F%3FEind%20geldigheid"
 
@@ -47,7 +46,7 @@ domeintabel_namen <- function(peildatum = NULL){
 
   if (is.null(peildatum)) peildatum <- toString(Sys.Date())
 
-    domeintabel_namen_m()
+  domeintabel_namen_m()
 }
 
 is_domeintabel <- function(namen, peildatum = NULL){
@@ -56,15 +55,12 @@ is_domeintabel <- function(namen, peildatum = NULL){
 }
 
 
-
-
 domeintabel_guid <- function(namen, peildatum = NULL){
   overzicht <- domeintabel_namen(peildatum)
   tibble::tibble(namen = namen) %>%
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
     dplyr::pull(guid) %>%
     unname()
-
 }
 
 domeintabel_elementtype <- function(namen, peildatum = NULL){
@@ -73,7 +69,6 @@ domeintabel_elementtype <- function(namen, peildatum = NULL){
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
     dplyr::pull(domeintabelsoort) %>%
     unname()
-
 }
 
 domeintabel_kolomnamen <- function(naam, peildatum = NULL){
