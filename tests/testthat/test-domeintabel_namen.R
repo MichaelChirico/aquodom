@@ -1,17 +1,17 @@
 # Alleen lokaaltesten ivm tijd
 
-test_that("domeintabel_namen_basis", {
+test_that("dom_overzicht_basis", {
   # skip("Duurt relatief lang")
   skip_on_cran()
 
-  expect_gt(nrow(domeintabel_namen_basis()), 250)
+  expect_gt(nrow(dom_overzicht_basis()), 250)
 })
 
-test_that("Caching domeintabel_namen", {
+test_that("Caching dom_overzicht", {
   # skip("Duurt relatief lang")
   skip_on_cran()
-  domeintabel_namen()
-  expect_true(system.time(domeintabel_namen())[3] < 0.5)
+  dom_overzicht()
+  expect_true(system.time(dom_overzicht())[3] < 0.5)
 })
 
 test_that("is_domeintabel",{
@@ -21,5 +21,5 @@ test_that("is_domeintabel",{
 
 test_that("domeintabel_guid",{
   skip_on_cran()
-  expect_equal(domeintabel_guid(c("Hoedanigheid", "Domeintabel")), c("Id-7169dd0a-813b-4cf1-86ab-9bbc52b113a4", NA))
+  expect_equal(dom_guid(c("Hoedanigheid", "Domeintabel")), c("Id-7169dd0a-813b-4cf1-86ab-9bbc52b113a4", NA))
 })

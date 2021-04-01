@@ -6,7 +6,7 @@ conv_timestamp <- function(timestamp){
 }
 
 
-domeintabel_namen_basis <- function() {
+dom_overzicht_basis <- function() {
 
   # Query samenstellen
   tekstUrl <- "https://www.aquo.nl/index.php"
@@ -38,45 +38,43 @@ domeintabel_namen_basis <- function() {
   return(domeintabellen)
 }
 
-domeintabel_namen <- function(peildatum = NULL){
+dom_overzicht <- function(){
 
   my_cache <- getOption("aquodom.cache_dir")
-  domeintabel_namen_m <- memoise::memoise(domeintabel_namen_basis,
+  domeintabel_namen_m <- memoise::memoise(dom_overzicht_basis,
                                           cache = cachem::cache_disk(dir = my_cache))
-
-  if (is.null(peildatum)) peildatum <- toString(Sys.Date())
 
   domeintabel_namen_m()
 }
 
-is_domeintabel <- function(namen, peildatum = NULL){
-  overzicht <- domeintabel_namen(peildatum)
+is_domeintabel <- function(namen){
+  overzicht <- dom_overzicht()
   namen %in% overzicht$domeintabel
 }
 
 
-domeintabel_guid <- function(namen, peildatum = NULL){
-  overzicht <- domeintabel_namen(peildatum)
+dom_guid <- function(namen){
+  overzicht <- dom_overzicht()
   tibble::tibble(namen = namen) %>%
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
     dplyr::pull(guid) %>%
     unname()
 }
 
-domeintabel_elementtype <- function(namen, peildatum = NULL){
-  overzicht <- domeintabel_namen(peildatum)
+dom_elementtype <- function(namen){
+  overzicht <- dom_overzicht()
   tibble::tibble(namen = namen) %>%
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
     dplyr::pull(domeintabelsoort) %>%
     unname()
 }
 
-domeintabel_kolomnamen <- function(naam, peildatum = NULL){
+dom_kolommen <- function(naam){
   if (length(naam) > 1) stop("'naam' dient een vector met lengte 1 te zijn")
 
-  if (!is_domeintabel(naam, peildatum)) stop(paste(naam, "is geen geldige domeintabelnaam"))
+  if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
-  overzicht <- domeintabel_namen(peildatum)
+  overzicht <- dom_overzicht()
 
   overzicht %>%
     dplyr::filter(domeintabel == naam) %>%
