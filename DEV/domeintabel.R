@@ -82,3 +82,5 @@ url_dec <- paste0(
 # ))
 #
 # readr::read_csv2(httr::content(httr::GET(URLencode(url_dec_orig)), as = "text") )
+
+
