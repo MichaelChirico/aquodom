@@ -24,6 +24,9 @@ Imports:
     memoise,
     cachem,
     magrittr,
-    dplyr,
+    dplyr (>= 1.0.0),
     stringr,
-    lubridate
+    lubridate,
+    tidyselect (>= 1.0.0),
+    readr,
+    glue

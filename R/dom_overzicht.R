@@ -41,10 +41,10 @@ dom_overzicht_basis <- function() {
 dom_overzicht <- function(){
 
   my_cache <- getOption("aquodom.cache_dir")
-  domeintabel_namen_m <- memoise::memoise(dom_overzicht_basis,
+  dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,
                                           cache = cachem::cache_disk(dir = my_cache))
 
-  domeintabel_namen_m()
+  dom_overzicht_m()
 }
 
 is_domeintabel <- function(namen){
@@ -70,7 +70,7 @@ dom_elementtype <- function(namen){
 }
 
 dom_kolommen <- function(naam){
-  if (length(naam) > 1) stop("'naam' dient een vector met lengte 1 te zijn")
+  if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
 
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
