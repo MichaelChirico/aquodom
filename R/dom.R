@@ -1,17 +1,3 @@
-create_dom_url <- function(naam, limit = 500, offset = 0){
-
-  kolomstring <- dom_kolommen(naam) %>%
-    stringr::str_replace(" ", "+") %>%
-    paste(collapse = "%0D%0A?")
-
-  glue::glue(
-    "https://www.aquo.nl/index.php?title=Speciaal:Vragen&q=+[[Breder::{dom_guid(naam)}]]",
-    "%0D%0A&po=?{kolomstring}%0D%0A",
-    "&p[format]=csv&p[sep]=;&p[limit]={limit}&p[offset]={offset}"
-  )
-}
-
-
 dom_basis <- function(naam){
 
   limit <- 500
@@ -34,6 +20,7 @@ dom_basis <- function(naam){
     offset <- offset + limit
     cat(".")
   }
+  cat("\n")
 
   res <-
     res %>%
@@ -66,5 +53,4 @@ dom <- function(naam, peildatum = NULL) {
   }
 
   return(domeintabel)
-
 }
