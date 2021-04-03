@@ -1,7 +1,6 @@
 create_dom_url <- function(naam, limit = 500, offset = 0){
 
   kolomstring <- dom_kolommen(naam) %>%
-    # .[c(4, 5, 1, 2, 3)] %>%
     stringr::str_replace(" ", "+") %>%
     paste(collapse = "%0D%0A?")
 
