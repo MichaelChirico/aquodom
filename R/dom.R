@@ -35,12 +35,15 @@ dom_basis <- function(naam){
     cat(".")
   }
 
-  res <- res %>%
+  res <-
+    res %>%
     dplyr::rename_with(.fn = ~"Guid", .cols = dplyr::any_of("X1")) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_replace(x, pattern = " ", "_")) %>%
     dplyr::rename_with(.fn = stringr::str_to_lower) %>%
     dplyr::mutate(dplyr::across(.cols = dplyr::contains("geldigheid"),
-                                .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S")))
+                                .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
+    dplyr::relocate(any_of(c("id", "codes", "cijfercode", "omschrijving", "begin_geldigheid", "eind_geldigheid")))
+
   return(res)
 }
 
