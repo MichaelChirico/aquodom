@@ -29,7 +29,7 @@ dom_basis <- function(naam){
     dplyr::rename_with(.fn = stringr::str_to_lower) %>%
     dplyr::mutate(dplyr::across(.cols = dplyr::contains("geldigheid"),
                                 .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
-    dplyr::relocate(any_of(c("id", "codes", "cijfercode", "omschrijving", "begin_geldigheid", "eind_geldigheid")))
+    dplyr::relocate(dplyr::any_of(c("id", "codes", "cijfercode", "omschrijving", "begin_geldigheid", "eind_geldigheid")))
 
   return(res)
 }
