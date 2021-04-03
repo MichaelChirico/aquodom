@@ -15,6 +15,9 @@ dom_overzicht_basis <- function() {
     dplyr::select(domeintabel = Voorkeurslabel, domeintabelsoort = Elementtype,
                   wijzigingsdatum = Wijzigingsdatum, begin_geldigheid = `Begin geldigheid`,
                   eind_geldigheid = `Eind geldigheid`, kolommen = Metadata, guid = X1 ) %>%
+    # dplyr::rename_with(.fn = ~"Guid", .cols = dplyr::any_of("X1")) %>%
+    # dplyr::rename_with(.fn = function(x) stringr::str_replace(x, pattern = " ", "_")) %>%
+    # dplyr::rename_with(.fn = stringr::str_to_lower) %>%
     dplyr::mutate(dplyr::across(.cols = c(wijzigingsdatum, begin_geldigheid, eind_geldigheid),
                                 .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
     dplyr::mutate(kolommen = stringr::str_split(kolommen, ","))
@@ -31,6 +34,7 @@ dom_overzicht <- function(){
   dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,
                                           cache = cachem::cache_disk(dir = my_cache))
 
-  suppressWarnings(dom_overzicht_m())
+  dom_overzicht_m()
 }
 
+dom_overzicht()
