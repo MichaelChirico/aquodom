@@ -1,9 +1,9 @@
-conv_timestamp <- function(timestamp){
-  timestamp %>%
-    as.numeric() %>%
-    as.POSIXct(origin = as.POSIXct("1970-01-01 00:00:00"), tz = "CET") %>%
-    lubridate::as_date()
-}
+# conv_timestamp <- function(timestamp){
+#   timestamp %>%
+#     as.numeric() %>%
+#     as.POSIXct(origin = as.POSIXct("1970-01-01 00:00:00"), tz = "CET") %>%
+#     lubridate::as_date()
+# }
 
 is_domeintabel <- function(namen){
   overzicht <- dom_overzicht()
@@ -19,13 +19,13 @@ dom_guid <- function(namen){
     unname()
 }
 
-dom_elementtype <- function(namen){
-  overzicht <- dom_overzicht()
-  tibble::tibble(namen = namen) %>%
-    dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
-    dplyr::pull(domeintabelsoort) %>%
-    unname()
-}
+# dom_elementtype <- function(namen){
+#   overzicht <- dom_overzicht()
+#   tibble::tibble(namen = namen) %>%
+#     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
+#     dplyr::pull(domeintabelsoort) %>%
+#     unname()
+# }
 
 dom_kolommen <- function(naam){
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
