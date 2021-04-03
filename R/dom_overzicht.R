@@ -19,18 +19,22 @@ dom_overzicht_basis <- function() {
                                 .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
     dplyr::mutate(kolommen = stringr::str_split(kolommen, ","))
 
-
   return(overzicht)
 }
 
 
-
-dom_overzicht <- function(){
+dom_overzicht <- function(peildatum = NULL){
 
   my_cache <- getOption("aquodom.cache_dir")
   dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,
                                           cache = cachem::cache_disk(dir = my_cache))
 
-  suppressWarnings(dom_overzicht_m())
+  overzicht <- suppressWarnings(dom_overzicht_m())
+
+  if (!is.null(peildatum)) {
+    if (class(peildatum) != "Date") {peildatum <- lubridate::as_date(peildatum)}
+    overzicht <- overzicht %>% dplyr::filter(begin_geldigheid <= peildatum, eind_geldigheid >= peildatum)
+  }
+  return(overzicht)
 }
 
