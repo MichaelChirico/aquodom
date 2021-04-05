@@ -39,7 +39,6 @@
 #' dom_overzicht(peildatum = "2021-04-05")
 #'
 #' }
-#'
 dom_overzicht <- function(peildatum = NULL){
 
   my_cache <- getOption("aquodom.cache_dir")

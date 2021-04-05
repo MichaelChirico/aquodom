@@ -1,3 +1,58 @@
+#' Opvragen van domeintabellen
+#'
+#' Deze functie haalt een domeintabel op van www.aquo.nl.
+#'
+#' @param naam Naam van een domeintabel - hoofdlettergevoelig. Zie
+#'   `dom_overzicht()` voor geldige domeintabelnamen.
+#' @param peildatum Date of een character die omgezet kan worden in een Date met
+#'   `lubridate::as_date()`. De peildatum filtert de output om alleen geldige
+#'   domeinwaarden op de peildatum weer te geven. Indien `NULL` worden alle
+#'   domeinwaarden, inclusief historische domeinwaarden, weergegeven.
+#'
+#' @section Caching: Deze functie maakt gebruik van cachging voor het
+#'   optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
+#'   Standaard wordt de map `tempdir()` gebruikt als cache. Deze map wordt na
+#'   elke R-sessie verwijderd. Voor een persistente cache kan een zelfgekozen
+#'   map worden gebruikt. Deze map kan worden ingesteld met
+#'   `options(aquodom.cache_dir = "mijn_cache_dir")`. **Let op** Deze cache
+#'   wordt niet automatisch gewist. Dit kan ertoe leiden dat deze functie met
+#'   verouderde data werkt. Deze optie dient dus met enige voorzichtigheid
+#'   gebruikt te worden.
+#'
+#' @return Een tibble met een met domeinwaarden. De kolommen zijn afhankelijk
+#'   van de betreffende domeintabel.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' dom("MonsterType")
+#' dom("MonsterType", peildatum = Sys.Date())
+#' dom("MonsterType", peildatum = "2021-04-05")
+#'
+#' }
+dom <- function(naam, peildatum = NULL) {
+  if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
+  if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
+
+  my_cache <- getOption("aquodom.cache_dir")
+  dom_m <- memoise::memoise(dom_basis, cache = cachem::cache_disk(dir = my_cache))
+
+  domeintabel <- suppressWarnings(dom_m(naam))
+
+  if (!is.null(peildatum)) {
+    if (!"begin_geldigheid" %in% names(domeintabel) | !"eind_geldigheid" %in% names(domeintabel)) {
+      stop("Voor deze tabel is geen begin_geldigheid of eind_geldigheid beschikbaar")
+    }
+    if (class(peildatum) != "Date") {peildatum <- lubridate::as_date(peildatum)}
+    domeintabel <- domeintabel %>% dplyr::filter(begin_geldigheid <= peildatum, eind_geldigheid >= peildatum)
+
+  }
+
+  return(domeintabel)
+}
+
 dom_basis <- function(naam){
 
   limit <- 500
@@ -34,23 +89,4 @@ dom_basis <- function(naam){
   return(res)
 }
 
-dom <- function(naam, peildatum = NULL) {
-  if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
-  if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
-  my_cache <- getOption("aquodom.cache_dir")
-  dom_m <- memoise::memoise(dom_basis, cache = cachem::cache_disk(dir = my_cache))
-
-  domeintabel <- suppressWarnings(dom_m(naam))
-
-  if (!is.null(peildatum)) {
-    if (!"begin_geldigheid" %in% names(domeintabel) | !"eind_geldigheid" %in% names(domeintabel)) {
-      stop("Voor deze tabel is geen begin_geldigheid of eind_geldigheid beschikbaar")
-    }
-    if (class(peildatum) != "Date") {peildatum <- lubridate::as_date(peildatum)}
-    domeintabel <- domeintabel %>% dplyr::filter(begin_geldigheid <= peildatum, eind_geldigheid >= peildatum)
-
-  }
-
-  return(domeintabel)
-}

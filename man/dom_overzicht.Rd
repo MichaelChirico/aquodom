@@ -48,5 +48,4 @@ dom_overzicht(peildatum = Sys.Date())
 dom_overzicht(peildatum = "2021-04-05")
 
 }
-
 }

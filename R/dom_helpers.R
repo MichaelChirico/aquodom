@@ -1,8 +1,41 @@
+#' Check domeintabelnamen
+#'
+#' Checkt of een namen geldige domeintabelnamen zijn.
+#'
+#' @param namen Character vector met namen van domeintabellen.
+#'
+#' @return Logical vector
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' is_domeintabel("MonsterType")
+#' is_domeintabel("Domeintabel")
+#'
+#' }
 is_domeintabel <- function(namen){
   overzicht <- dom_overzicht()
   namen %in% overzicht$domeintabel
 }
 
+#' Guid van domeintabel
+#'
+#' Zoek de guid van domeintabellen op.
+#'
+#' @param namen Character vector met namen van domeintabellen.
+#'
+#' @return Vector met guid's
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' dom_guid("MonsterType")
+#'
+#' }
 dom_guid <- function(namen){
   overzicht <- dom_overzicht()
   tibble::tibble(namen = namen) %>%
@@ -11,6 +44,23 @@ dom_guid <- function(namen){
     unname()
 }
 
+
+#' Kolommen van een domeintabel
+#'
+#' Deze functie zoekt op welke kolommen een domeintabel heeft.
+#'
+#' @param naam Naam van een domeintabel
+#'
+#' @return Een vector met kolomnamen
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' dom_kolommen("MonsterType")
+#'
+#' }
 dom_kolommen <- function(naam){
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
 
@@ -24,6 +74,15 @@ dom_kolommen <- function(naam){
     .[[1]]
 }
 
+#' Maak een URL naar de csv domeintabel
+#'
+#' Deze functie genereert de juiste URL van een domeintabel voor de functie `dom()`
+#'
+#' @param naam Naam van de domeintabel
+#' @param limit Aantal waarden per keer
+#' @param offset Startpunt
+#'
+#' @return Een string met de URL
 create_dom_url <- function(naam, limit = 500, offset = 0){
 
   kolomstring <- dom_kolommen(naam) %>%
@@ -36,18 +95,3 @@ create_dom_url <- function(naam, limit = 500, offset = 0){
     "&p[format]=csv&p[sep]=;&p[limit]={limit}&p[offset]={offset}"
   )
 }
-
-# conv_timestamp <- function(timestamp){
-#   timestamp %>%
-#     as.numeric() %>%
-#     as.POSIXct(origin = as.POSIXct("1970-01-01 00:00:00"), tz = "CET") %>%
-#     lubridate::as_date()
-# }
-
-# dom_elementtype <- function(namen){
-#   overzicht <- dom_overzicht()
-#   tibble::tibble(namen = namen) %>%
-#     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
-#     dplyr::pull(domeintabelsoort) %>%
-#     unname()
-# }
