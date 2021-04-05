@@ -1,3 +1,60 @@
+#' Overzicht van alle domeintabellen
+#'
+#' Deze functie geeft een overzicht van alle beschikbare domeintabellen,
+#' inclusief historische tabellen, op www.aquo.nl.
+#'
+#' @param peildatum Date of een character die omgezet kan worden in een Date met
+#'   `lubridate::as_date()`. De peildatum filtert de output om alleen geldige
+#'   domeintabellen op de peildatum weer te geven. Indien `NULL` worden alle
+#'   domeintabellen, inclusief historische domeintabellen, weergegeven.
+#'
+#' @section Caching: Deze functie maakt gebruik van cachging voor het
+#'   optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
+#'   Standaard wordt de map `tempdir()` gebruikt als cache. Deze map wordt na
+#'   elke R-sessie verwijderd. Voor een persistente cache kan een zelfgekozen map
+#'   worden gebruikt. Deze map kan worden ingesteld met
+#'   `options(aquodom.cache_dir = "mijn_cache_dir")`. **Let op** Deze cache wordt
+#'   niet automatisch gewist. Dit kan ertoe leiden dat deze functie met verouderde
+#'   data werkt. Deze optie dient dus met enige voorzichtigheid gebruikt te worden.
+#'
+#'
+#' @return Een tibble met een overzicht van alle domeintabellen. Het overzicht
+#'   bevat de volgende kolommen:
+#'
+#'   - domeintabel - Naam van de domeintabel
+#'   - domeintabelsoort - Het type domeintabel
+#'   - wijzigingsdatum - Datum van de laatste wijziging van de tabel.
+#'   - begin_geldigheid - Datum van het begin van de geldigheid van de domeintabel
+#'   - eind_geldigheid - Datum van het eind van de geldigheid van de domeintabel
+#'   - kolommen - Een vector met de kolomnamen van de domeintabel.
+#'   - guid - De guid van de domeintabel
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' dom_overzicht()
+#' dom_overzicht(peildatum = Sys.Date())
+#' dom_overzicht(peildatum = "2021-04-05")
+#'
+#' }
+#'
+dom_overzicht <- function(peildatum = NULL){
+
+  my_cache <- getOption("aquodom.cache_dir")
+  dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,
+                                      cache = cachem::cache_disk(dir = my_cache))
+
+  overzicht <- suppressWarnings(dom_overzicht_m())
+
+  if (!is.null(peildatum)) {
+    if (class(peildatum) != "Date") {peildatum <- lubridate::as_date(peildatum)}
+    overzicht <- overzicht %>% dplyr::filter(begin_geldigheid <= peildatum, eind_geldigheid >= peildatum)
+  }
+  return(overzicht)
+}
+
 dom_overzicht_basis <- function() {
 
   url <- "https://www.aquo.nl/index.php?title=Speciaal:Vragen&x=[[Elementtype::Domeintabel%20%7C%7C%20Domeintabeltechnisch%20%7C%7C%20Domeintabelverzamellijst]]%20/?Elementtype/?Voorkeurslabel/?Metadata/?Wijzigingsdatum/?Begin%20geldigheid/?Eind%20geldigheid/&format=csv&sep=;&offset=0&limit=500"
@@ -23,18 +80,5 @@ dom_overzicht_basis <- function() {
 }
 
 
-dom_overzicht <- function(peildatum = NULL){
 
-  my_cache <- getOption("aquodom.cache_dir")
-  dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,
-                                          cache = cachem::cache_disk(dir = my_cache))
-
-  overzicht <- suppressWarnings(dom_overzicht_m())
-
-  if (!is.null(peildatum)) {
-    if (class(peildatum) != "Date") {peildatum <- lubridate::as_date(peildatum)}
-    overzicht <- overzicht %>% dplyr::filter(begin_geldigheid <= peildatum, eind_geldigheid >= peildatum)
-  }
-  return(overzicht)
-}
 
