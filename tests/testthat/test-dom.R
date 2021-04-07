@@ -1,5 +1,7 @@
 test_that("dom werkt", {
 
+  skip_if(!interactive() )
+
   expect_error(dom("test"), "geen geldige")
   monstertype <- dom("MonsterType")
   expect_s3_class(monstertype$begin_geldigheid, "Date")

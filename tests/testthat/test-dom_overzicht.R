@@ -1,21 +1,24 @@
 # Alleen lokaaltesten ivm tijd
 
 test_that("dom_overzicht_basis", {
-  # skip("Duurt relatief lang")
-  skip_on_cran()
+
+  skip_if(!interactive())
 
   expect_gt(nrow(suppressWarnings(dom_overzicht_basis())), 250)
 })
 
 test_that("Caching dom_overzicht", {
-  # skip("Duurt relatief lang")
-  skip_on_cran()
+
+  skip_if(!interactive())
+
   dom_overzicht()
   expect_true(system.time(dom_overzicht())[3] < 0.5)
 })
 
 
 test_that("dom_overzicht", {
+
+  skip_if(!interactive())
 
   overzicht <- dom_overzicht()
 
