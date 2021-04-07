@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # aquodom
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/RedTent/aquodom.svg?branch=main)](https://travis-ci.com/RedTent/aquodom)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/aquodom/actions)
 <!-- badges: end -->
 
