@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# aquodom
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Met *aquodom* is het op eenvoudige wijze mogelijk om de aquo-domeintabellen te downloaden en te gebruiken in R.
+
+## Installatie
+
+*aquodom* is te installeren vanaf CRAN met (nog niet):
+
+``` r
+# Nog niet op CRAN
+install.packages("aquodom") 
+```
+
+De ontwikkelversie is te installeren van [GitHub](https://github.com/RedTent/aquodom) met:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("RedTent/aquodom")
+```
+## Aquo-domeintabellen
+
+De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling van gegevens in het waterbeheer. Met *aquodom*  (kort voor aquo-domeintabellen) is het makkelijk om va de API domeintabellen van de Aquo-standaard in R te downloaden en te gebruiken. 
+
+De belangrijkste functie van *aquodom* is `dom()`. Met deze functie kan iedere domeintabel van aquo.nl worden gedownload. De functie `dom_overzicht()` geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument `peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum
+
+
+```{r dom}
+library(aquodom)
+
+dom("MonsterType")
+
+# Alleen domeinwaarden die nu geldig zijn
+dom("MonsterType", peildatum = Sys.Date())
+
+dom_overzicht(peildatum = Sys.Date())
+
+nrow(dom_overzicht(peildatum = Sys.Date()))
+# inclusief ongeldige domeintabellen
+nrow(dom_overzicht())
+
+```
+
+## Caching
+
+Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in beslag nemen. Daarom maakt *aquodom* gebruik van caching. Als een domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik gemaakt van de cache. In de documentatie is ook beschreven hoe het mogelijk is om een persistente cache te maken (voor gevorderden).
+
+```{r caching}
+# De eerste keer duurt vrij lang
+system.time(dom("Hoedanigheid"))
+
+# De tweede keer gaat veel sneller
+system.time(dom("Hoedanigheid"))
+
+
+```
+
