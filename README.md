@@ -4,6 +4,10 @@
 # aquodom
 
 <!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/RedTent/aquodom.svg?branch=main)](https://travis-ci.com/RedTent/aquodom)
+[![R-CMD-check](https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/aquodom/actions)
 <!-- badges: end -->
 
 Met *aquodom* is het op eenvoudige wijze mogelijk om de
@@ -105,10 +109,10 @@ mogelijk is om een persistente cache te maken (voor gevorderden).
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.17    0.09    2.81
+#>    0.14    0.14    3.64
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>       0       0       0
+#>    0.00    0.02    0.02
 ```
