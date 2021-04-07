@@ -1,13 +1,16 @@
 Package: aquodom
-Title: What the Package Does (One Line, Title Case)
+Title: Toegang tot de Aquo-domeintabellen vanuit R
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Johan",
+           family = "van Tent",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "tentvanjohan@hotmail.com")
+Description: De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling 
+    van gegevens in het waterbeheer. Met *aquodom*  (kort voor aquo-domeintabellen) 
+    is het makkelijk om va de API domeintabellen van de Aquo-standaard in R te 
+    downloaden en te gebruiken.
+Language: NL    
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -27,3 +30,5 @@ Imports:
     lubridate,
     readr,
     glue
+URL: https://redtent.github.io/aquodom/
+BugReports: https://github.com/RedTent/aquodom/issues
