@@ -4,7 +4,7 @@
 \alias{dom}
 \title{Opvragen van domeintabellen}
 \usage{
-dom(naam, peildatum = NULL)
+dom(naam, peildatum = Sys.Date())
 }
 \arguments{
 \item{naam}{Naam van een domeintabel - hoofdlettergevoelig. Zie
@@ -12,8 +12,8 @@ dom(naam, peildatum = NULL)
 
 \item{peildatum}{Date of een character die omgezet kan worden in een Date met
 \code{lubridate::as_date()}. De peildatum filtert de output om alleen geldige
-domeinwaarden op de peildatum weer te geven. Indien \code{NULL} worden alle
-domeinwaarden, inclusief historische domeinwaarden, weergegeven.}
+domeinwaarden op de peildatum weer te geven. Gebruik \code{NULL} om alle
+domeinwaarden ongeacht de geldigheid weer te geven.}
 }
 \value{
 Een tibble met een met domeinwaarden. De kolommen zijn afhankelijk

@@ -6,8 +6,8 @@
 #'   `dom_overzicht()` voor geldige domeintabelnamen.
 #' @param peildatum Date of een character die omgezet kan worden in een Date met
 #'   `lubridate::as_date()`. De peildatum filtert de output om alleen geldige
-#'   domeinwaarden op de peildatum weer te geven. Indien `NULL` worden alle
-#'   domeinwaarden, inclusief historische domeinwaarden, weergegeven.
+#'   domeinwaarden op de peildatum weer te geven. Gebruik `NULL` om alle
+#'   domeinwaarden ongeacht de geldigheid weer te geven.
 #'
 #' @section Caching: Deze functie maakt gebruik van cachging voor het
 #'   optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
@@ -32,7 +32,7 @@
 #' dom("MonsterType", peildatum = "2021-04-05")
 #'
 #' }
-dom <- function(naam, peildatum = NULL) {
+dom <- function(naam, peildatum = Sys.Date()) {
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 

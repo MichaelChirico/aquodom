@@ -1,6 +1,7 @@
 test_that("dom werkt", {
+  skip_on_ci()
+  skip_on_cran()
 
-  skip_if(!interactive() )
 
   expect_error(dom("test"), "geen geldige")
   monstertype <- dom("MonsterType")

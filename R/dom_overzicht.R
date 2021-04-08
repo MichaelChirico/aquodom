@@ -5,8 +5,8 @@
 #'
 #' @param peildatum Date of een character die omgezet kan worden in een Date met
 #'   `lubridate::as_date()`. De peildatum filtert de output om alleen geldige
-#'   domeintabellen op de peildatum weer te geven. Indien `NULL` worden alle
-#'   domeintabellen, inclusief historische domeintabellen, weergegeven.
+#'   domeintabellen op de peildatum weer te geven. Gebruik `NULL` om alle
+#'   domeintabellen ongeacht de geldigheid weer te geven.
 #'
 #' @section Caching: Deze functie maakt gebruik van cachging voor het
 #'   optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
@@ -39,7 +39,7 @@
 #' dom_overzicht(peildatum = "2021-04-05")
 #'
 #' }
-dom_overzicht <- function(peildatum = NULL){
+dom_overzicht <- function(peildatum = Sys.Date()){
 
   my_cache <- getOption("aquodom.cache_dir")
   dom_overzicht_m <- memoise::memoise(dom_overzicht_basis,

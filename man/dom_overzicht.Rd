@@ -4,13 +4,13 @@
 \alias{dom_overzicht}
 \title{Overzicht van alle domeintabellen}
 \usage{
-dom_overzicht(peildatum = NULL)
+dom_overzicht(peildatum = Sys.Date())
 }
 \arguments{
 \item{peildatum}{Date of een character die omgezet kan worden in een Date met
 \code{lubridate::as_date()}. De peildatum filtert de output om alleen geldige
-domeintabellen op de peildatum weer te geven. Indien \code{NULL} worden alle
-domeintabellen, inclusief historische domeintabellen, weergegeven.}
+domeintabellen op de peildatum weer te geven. Gebruik \code{NULL} om alle
+domeintabellen ongeacht de geldigheid weer te geven.}
 }
 \value{
 Een tibble met een overzicht van alle domeintabellen. Het overzicht

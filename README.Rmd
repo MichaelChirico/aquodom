@@ -41,7 +41,7 @@ devtools::install_github("RedTent/aquodom")
 
 De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling van gegevens in het waterbeheer. Met *aquodom*  (kort voor aquo-domeintabellen) is het makkelijk om va de API domeintabellen van de Aquo-standaard in R te downloaden en te gebruiken. 
 
-De belangrijkste functie van *aquodom* is `dom()`. Met deze functie kan iedere domeintabel van aquo.nl worden gedownload. De functie `dom_overzicht()` geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument `peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum
+De belangrijkste functie van *aquodom* is `dom()`. Met deze functie kan iedere domeintabel van aquo.nl worden gedownload. De functie `dom_overzicht()` geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument `peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum of alle waarden met `peildatum = NULL`.
 
 
 ```{r dom}
@@ -49,14 +49,14 @@ library(aquodom)
 
 dom("MonsterType")
 
-# Alleen domeinwaarden die nu geldig zijn
-dom("MonsterType", peildatum = Sys.Date())
+# Alle domeinwaarden inclusief verouderde waarden
+dom("MonsterType", peildatum = NULL)
 
-dom_overzicht(peildatum = Sys.Date())
+dom_overzicht()
 
-nrow(dom_overzicht(peildatum = Sys.Date()))
-# inclusief ongeldige domeintabellen
 nrow(dom_overzicht())
+# inclusief ongeldige domeintabellen
+nrow(dom_overzicht(peildatum = NULL))
 
 ```
 
