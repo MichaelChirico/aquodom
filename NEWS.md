@@ -1,9 +1,7 @@
 # aquodom 0.0.0.9000
 
-* `dom()`
-* `dom_overzicht()`
-
-## TO DO
+* `dom()` - Vraag een domeintabel op.
+* `dom_overzicht()` - Overzicht van alle domeintabellen.
 
 ## Misschien later
 
