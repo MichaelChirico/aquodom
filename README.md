@@ -49,17 +49,16 @@ met `peildatum = NULL`.
 library(aquodom)
 
 dom("MonsterType")
-#> # A tibble: 8 x 6
+#> # A tibble: 7 x 6
 #>      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   
 #>   <dbl> <chr>          <date>           <date>          <chr>     <chr>         
 #> 1    10 analysemonster 2017-12-13       2100-01-01      Id-6a3e6~ Id-99092d94-d~
 #> 2     8 materiaalmons~ 2015-11-18       2100-01-01      Id-f811d~ Id-2d146a3e-3~
-#> 3    10 mengmonster    2015-11-18       2017-12-12      Id-a0a78~ <NA>          
-#> 4    11 samengevoegd ~ 2017-12-13       2100-01-01      Id-81ce3~ Id-8df42796-7~
-#> 5     4 toetsmonster   2015-11-18       2100-01-01      Id-0034d~ Id-ad4f1180-6~
-#> 6     9 uitloogmonster 2015-11-18       2100-01-01      Id-6053f~ Id-48826f74-c~
-#> 7     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~
-#> 8     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~
+#> 3    11 samengevoegd ~ 2017-12-13       2100-01-01      Id-81ce3~ Id-8df42796-7~
+#> 4     4 toetsmonster   2015-11-18       2100-01-01      Id-0034d~ Id-ad4f1180-6~
+#> 5     9 uitloogmonster 2015-11-18       2100-01-01      Id-6053f~ Id-48826f74-c~
+#> 6     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~
+#> 7     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~
 
 # Alle domeinwaarden inclusief verouderde waarden
 dom("MonsterType", peildatum = NULL)
@@ -76,23 +75,23 @@ dom("MonsterType", peildatum = NULL)
 #> 8     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~
 
 dom_overzicht()
-#> # A tibble: 261 x 7
+#> # A tibble: 126 x 7
 #>    domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid
 #>    <chr>       <chr>            <date>          <date>           <date>         
-#>  1 Aanduiding~ Domeintabel      2020-06-30      2011-08-12       2018-12-10     
-#>  2 Aanslag_ty~ Domeintabel      2020-06-30      2011-10-20       2018-12-10     
-#>  3 Aanvoereen~ Domeintabel      2020-06-30      2011-08-19       2018-12-10     
-#>  4 Aanvoergeb~ Domeintabel      2020-06-30      2011-08-19       2018-12-10     
-#>  5 Aanwezig_a~ Domeintabel      2020-06-30      2011-09-08       2018-12-10     
-#>  6 Academisch~ Domeintabel      2020-06-30      2011-08-19       2018-12-10     
-#>  7 Adellijke_~ Domeintabel      2020-06-30      2011-08-19       2018-12-10     
-#>  8 Aflevering~ Domeintabel      2020-06-30      2011-10-22       2018-12-13     
-#>  9 Afrasterin~ Domeintabel      2020-06-30      2011-09-10       2011-10-15     
-#> 10 Afsluitbar~ Domeintabel      2020-06-30      2011-09-08       2011-10-12     
-#> # ... with 251 more rows, and 2 more variables: kolommen <list>, guid <chr>
+#>  1 Afsluitmid~ Domeintabel      2020-11-11      2016-03-12       2100-01-01     
+#>  2 Bekleding_~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#>  3 BekledingT~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#>  4 Bekledingl~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#>  5 Bemonsteri~ Domeintabel      2020-11-09      2011-06-10       2100-01-01     
+#>  6 Bemonsteri~ Domeintabel      2020-06-30      2011-06-11       2100-01-01     
+#>  7 Bemonsteri~ Domeintabel      2020-06-30      2011-10-06       2100-01-01     
+#>  8 BeschermdG~ Domeintabel      2020-11-09      2011-11-11       2100-01-01     
+#>  9 Besturings~ Domeintabel      2020-11-11      2011-10-15       2100-01-01     
+#> 10 Bevaarbaar~ Domeintabel      2020-06-30      2011-08-12       2100-01-01     
+#> # ... with 116 more rows, and 2 more variables: kolommen <list>, guid <chr>
 
 nrow(dom_overzicht())
-#> [1] 261
+#> [1] 126
 # inclusief ongeldige domeintabellen
 nrow(dom_overzicht(peildatum = NULL))
 #> [1] 261
@@ -111,10 +110,10 @@ mogelijk is om een persistente cache te maken (voor gevorderden).
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.19    0.09    2.93
+#>    0.19    0.11    2.77
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>    0.02    0.00    0.01
+#>    0.00    0.01    0.02
 ```

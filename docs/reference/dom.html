@@ -120,7 +120,7 @@
     <p>Deze functie haalt een domeintabel op van www.aquo.nl.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dom</span>(<span class='no'>naam</span>, <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>dom</span>(<span class='no'>naam</span>, <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,8 +134,8 @@
       <th>peildatum</th>
       <td><p>Date of een character die omgezet kan worden in een Date met
 <code><a href='http://lubridate.tidyverse.org/reference/as_date.html'>lubridate::as_date()</a></code>. De peildatum filtert de output om alleen geldige
-domeinwaarden op de peildatum weer te geven. Indien <code>NULL</code> worden alle
-domeinwaarden, inclusief historische domeinwaarden, weergegeven.</p></td>
+domeinwaarden op de peildatum weer te geven. Gebruik <code>NULL</code> om alle
+domeinwaarden ongeacht de geldigheid weer te geven.</p></td>
     </tr>
     </table>
 

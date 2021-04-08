@@ -122,7 +122,7 @@ inclusief historische tabellen, op www.aquo.nl." />
 inclusief historische tabellen, op www.aquo.nl.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dom_overzicht</span>(<span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>dom_overzicht</span>(<span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,8 +131,8 @@ inclusief historische tabellen, op www.aquo.nl.</p>
       <th>peildatum</th>
       <td><p>Date of een character die omgezet kan worden in een Date met
 <code><a href='http://lubridate.tidyverse.org/reference/as_date.html'>lubridate::as_date()</a></code>. De peildatum filtert de output om alleen geldige
-domeintabellen op de peildatum weer te geven. Indien <code>NULL</code> worden alle
-domeintabellen, inclusief historische domeintabellen, weergegeven.</p></td>
+domeintabellen op de peildatum weer te geven. Gebruik <code>NULL</code> om alle
+domeintabellen ongeacht de geldigheid weer te geven.</p></td>
     </tr>
     </table>
 

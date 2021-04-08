@@ -92,10 +92,23 @@
 <h2 class="hasAnchor">
 <a href="#aquo-domeintabellen" class="anchor"></a>Aquo-domeintabellen</h2>
 <p>De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling van gegevens in het waterbeheer. Met <em>aquodom</em> (kort voor aquo-domeintabellen) is het makkelijk om va de API domeintabellen van de Aquo-standaard in R te downloaden en te gebruiken.</p>
-<p>De belangrijkste functie van <em>aquodom</em> is <code><a href="reference/dom.html">dom()</a></code>. Met deze functie kan iedere domeintabel van aquo.nl worden gedownload. De functie <code><a href="reference/dom_overzicht.html">dom_overzicht()</a></code> geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument <code>peildatum</code>. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum</p>
+<p>De belangrijkste functie van <em>aquodom</em> is <code><a href="reference/dom.html">dom()</a></code>. Met deze functie kan iedere domeintabel van aquo.nl worden gedownload. De functie <code><a href="reference/dom_overzicht.html">dom_overzicht()</a></code> geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument <code>peildatum</code>. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum of alle waarden met <code>peildatum = NULL</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">aquodom</span>)
 
 <span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>)
+<span class="co">#&gt; # A tibble: 7 x 6</span>
+<span class="co">#&gt;      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   </span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;           &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;         </span>
+<span class="co">#&gt; 1    10 analysemonster 2017-12-13       2100-01-01      Id-6a3e6~ Id-99092d94-d~</span>
+<span class="co">#&gt; 2     8 materiaalmons~ 2015-11-18       2100-01-01      Id-f811d~ Id-2d146a3e-3~</span>
+<span class="co">#&gt; 3    11 samengevoegd ~ 2017-12-13       2100-01-01      Id-81ce3~ Id-8df42796-7~</span>
+<span class="co">#&gt; 4     4 toetsmonster   2015-11-18       2100-01-01      Id-0034d~ Id-ad4f1180-6~</span>
+<span class="co">#&gt; 5     9 uitloogmonster 2015-11-18       2100-01-01      Id-6053f~ Id-48826f74-c~</span>
+<span class="co">#&gt; 6     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~</span>
+<span class="co">#&gt; 7     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~</span>
+
+<span class="co"># Alle domeinwaarden inclusief verouderde waarden</span>
+<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>, <span class="kw">peildatum</span> <span class="kw">=</span> <span class="kw">NULL</span>)
 <span class="co">#&gt; # A tibble: 8 x 6</span>
 <span class="co">#&gt;      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;           &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;         </span>
@@ -108,20 +121,7 @@
 <span class="co">#&gt; 7     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~</span>
 <span class="co">#&gt; 8     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~</span>
 
-<span class="co"># Alleen domeinwaarden die nu geldig zijn</span>
-<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>, <span class="kw">peildatum</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>())
-<span class="co">#&gt; # A tibble: 7 x 6</span>
-<span class="co">#&gt;      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;           &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;         </span>
-<span class="co">#&gt; 1    10 analysemonster 2017-12-13       2100-01-01      Id-6a3e6~ Id-99092d94-d~</span>
-<span class="co">#&gt; 2     8 materiaalmons~ 2015-11-18       2100-01-01      Id-f811d~ Id-2d146a3e-3~</span>
-<span class="co">#&gt; 3    11 samengevoegd ~ 2017-12-13       2100-01-01      Id-81ce3~ Id-8df42796-7~</span>
-<span class="co">#&gt; 4     4 toetsmonster   2015-11-18       2100-01-01      Id-0034d~ Id-ad4f1180-6~</span>
-<span class="co">#&gt; 5     9 uitloogmonster 2015-11-18       2100-01-01      Id-6053f~ Id-48826f74-c~</span>
-<span class="co">#&gt; 6     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~</span>
-<span class="co">#&gt; 7     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~</span>
-
-<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>(<span class="kw">peildatum</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>())
+<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>()
 <span class="co">#&gt; # A tibble: 126 x 7</span>
 <span class="co">#&gt;    domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;            &lt;date&gt;          &lt;date&gt;           &lt;date&gt;         </span>
@@ -137,10 +137,10 @@
 <span class="co">#&gt; 10 Bevaarbaar~ Domeintabel      2020-06-30      2011-08-12       2100-01-01     </span>
 <span class="co">#&gt; # ... with 116 more rows, and 2 more variables: kolommen &lt;list&gt;, guid &lt;chr&gt;</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>(<span class="kw">peildatum</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>()))
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>())
 <span class="co">#&gt; [1] 126</span>
 <span class="co"># inclusief ongeldige domeintabellen</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>())
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>(<span class="kw">peildatum</span> <span class="kw">=</span> <span class="kw">NULL</span>))
 <span class="co">#&gt; [1] 261</span></pre></div>
 </div>
 <div id="caching" class="section level2">
@@ -151,12 +151,12 @@
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
 <span class="co">#&gt; ..</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.21    0.11    3.53</span>
+<span class="co">#&gt;    0.19    0.11    2.77</span>
 
 <span class="co"># De tweede keer gaat veel sneller</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.02    0.00    0.02</span></pre></div>
+<span class="co">#&gt;    0.00    0.01    0.02</span></pre></div>
 </div>
 </div>
   </div>
