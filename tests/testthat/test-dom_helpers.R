@@ -3,6 +3,7 @@ test_that("is_domeintabel",{
   skip_on_cran()
 
   expect_equal(is_domeintabel(c("Hoedanigheid", "Domeintabel")), c(TRUE, FALSE))
+  expect_true(is_domeintabel("Academische_titel"))
 })
 
 test_that("dom_guid",{

@@ -16,7 +16,7 @@
 #'
 #' }
 is_domeintabel <- function(namen){
-  overzicht <- dom_overzicht()
+  overzicht <- dom_overzicht(peildatum = NULL)
   namen %in% overzicht$domeintabel
 }
 
@@ -37,7 +37,7 @@ is_domeintabel <- function(namen){
 #'
 #' }
 dom_guid <- function(namen){
-  overzicht <- dom_overzicht()
+  overzicht <- dom_overzicht(peildatum = NULL)
   tibble::tibble(namen = namen) %>%
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
     dplyr::pull(guid) %>%
@@ -66,7 +66,7 @@ dom_kolommen <- function(naam){
 
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
-  overzicht <- dom_overzicht()
+  overzicht <- dom_overzicht(peildatum = NULL)
 
   overzicht %>%
     dplyr::filter(domeintabel == naam) %>%
