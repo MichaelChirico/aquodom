@@ -29,6 +29,8 @@ Imports:
     stringr,
     lubridate,
     readr,
-    glue
+    glue,
+    rlang,
+    openxlsx
 URL: https://redtent.github.io/aquodom/
 BugReports: https://github.com/RedTent/aquodom/issues
