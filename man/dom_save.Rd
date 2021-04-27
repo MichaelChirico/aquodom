@@ -36,9 +36,7 @@ Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestan
  dom_save("MonsterType")
  dom_save("MonsterType", bestandsnaam = "test.csv", map = "data", bestandstype = "csv")
 
-
 }
-
 }
 \seealso{
 Other domeintabellen: 
