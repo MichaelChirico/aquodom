@@ -15,12 +15,14 @@ dom_save <- function(naam, bestandsnaam, bestandstype = c("xlsx", "csv"), peilda
     readr::write_csv2(dom_tabel, path = bestandsnaam)
   }
 
+  invisible(dom_tabel)
 
 }
 
 # dom_save("MonsterType", "DEV/test.xlsx", bestandstype = "xlsx")
-# dom_save("MonsterType", "DEV/test.xlsx")
+# x <- dom_save("MonsterType", "DEV/test.xlsx")
+# file.remove("DEV/test.xlsx")
 #
 # dom_save("MonsterType", "DEV/test.csv", "csv", "20000101")
-
+# file.remove("DEV/test.csv")
 
