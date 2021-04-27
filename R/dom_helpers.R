@@ -83,6 +83,8 @@ dom_kolommen <- function(naam){
 #' @param offset Startpunt
 #'
 #' @return Een string met de URL
+#'
+#' @noRd
 create_dom_url <- function(naam, limit = 500, offset = 0){
 
   kolomstring <- dom_kolommen(naam) %>%
@@ -94,4 +96,30 @@ create_dom_url <- function(naam, limit = 500, offset = 0){
     "%0D%0A&po=?{kolomstring}%0D%0A",
     "&p[format]=csv&p[sep]=;&p[limit]={limit}&p[offset]={offset}"
   )
+}
+
+#' Conversie van hoofdletters van domeintabel namen
+#'
+#' @param naam
+#'
+#' @return `naam` met de juiste hoofdletters.
+#'
+#' @noRd
+#'
+dom_convert_case <- function(naam) {
+
+  if (length(naam) > 1) {
+    stop("`naam` dient een charactervector met lengte 1 te zijn.")
+  }
+
+  naam_correct <-
+    dom_overzicht() %>%
+    dplyr::select(domeintabel) %>%
+    dplyr::mutate(lower = stringr::str_to_lower(domeintabel)) %>%
+    dplyr::filter(lower == stringr::str_to_lower(naam)) %>%
+    dplyr::pull(domeintabel)
+
+  if (length(naam_correct) != 1) naam_correct <- NA_character_
+
+  naam_correct
 }
