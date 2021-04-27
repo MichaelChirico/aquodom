@@ -29,6 +29,8 @@
 #'   - kolommen - Een vector met de kolomnamen van de domeintabel.
 #'   - guid - De guid van de domeintabel
 #'
+#' @family domeintabellen
+#'
 #' @export
 #'
 #' @examples

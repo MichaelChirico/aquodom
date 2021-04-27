@@ -22,6 +22,8 @@
 #' @return Een tibble met een met domeinwaarden. De kolommen zijn afhankelijk
 #'   van de betreffende domeintabel.
 #'
+#' @family domeintabellen
+#'
 #' @export
 #'
 #' @examples

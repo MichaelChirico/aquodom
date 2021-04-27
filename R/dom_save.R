@@ -1,17 +1,27 @@
-#' Opslaan domeintabel
+#' Opslaan domeintabel op schijf
 #'
 #' Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestand of als .csv-bestand.
 #'
-#' @param naam Naam van een domeintabel
-#' @param bestandsnaam
-#' @param map
-#' @param bestandstype
-#' @param peildatum
+#' @param naam Naam van een domeintabel.
+#' @param bestandsnaam Naam van het bestand om op te slaan. Eventueel als volledig pad. Default is de datum
+#' gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie worden opgegeven.
+#' @param map Naam van de map. De map moet bestaan.  Optioneel.
+#' @param bestandstype "xlsx" of "csv"  Opslaan als xlsx of als csv-bestand. Default is xlsx.
+#' @param peildatum De peildatum voor de domeintabel. Default is de huidige datum
 #'
-#' @return
+#' @return Slaat de domeintabel op de schijf. De domeintabel zelf wordt onzichtbaar geretourneerd.
+#'
 #' @export
 #'
 #' @examples
+#'
+#' \dontrun{
+#'  dom_save("MonsterType")
+#'  dom_save("MonsterType", bestandsnaam = "test.csv", map = "data", bestandstype = "csv")
+#'
+#'
+#' }
+#'
 dom_save <- function(naam,
                      bestandsnaam = paste(Sys.Date(), naam),
                      map = NULL,
