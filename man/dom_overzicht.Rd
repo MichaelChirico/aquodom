@@ -49,3 +49,9 @@ dom_overzicht(peildatum = "2021-04-05")
 
 }
 }
+\seealso{
+Other domeintabellen: 
+\code{\link{dom_save}()},
+\code{\link{dom}()}
+}
+\concept{domeintabellen}

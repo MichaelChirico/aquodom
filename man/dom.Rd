@@ -43,3 +43,9 @@ dom("MonsterType", peildatum = "2021-04-05")
 
 }
 }
+\seealso{
+Other domeintabellen: 
+\code{\link{dom_overzicht}()},
+\code{\link{dom_save}()}
+}
+\concept{domeintabellen}

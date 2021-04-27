@@ -5,11 +5,13 @@
 #' @param naam Naam van een domeintabel.
 #' @param bestandsnaam Naam van het bestand om op te slaan. Eventueel als volledig pad. Default is de datum
 #' gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie worden opgegeven.
-#' @param map Naam van de map. De map moet bestaan.  Optioneel.
+#' @param map Naam van de map. De map moet bestaan. Optioneel.
 #' @param bestandstype "xlsx" of "csv"  Opslaan als xlsx of als csv-bestand. Default is xlsx.
-#' @param peildatum De peildatum voor de domeintabel. Default is de huidige datum
+#' @param peildatum De peildatum voor de domeintabel. Default is de huidige datum.
 #'
 #' @return Slaat de domeintabel op de schijf. De domeintabel zelf wordt onzichtbaar geretourneerd.
+#'
+#' @family domeintabellen
 #'
 #' @export
 #'
@@ -19,9 +21,7 @@
 #'  dom_save("MonsterType")
 #'  dom_save("MonsterType", bestandsnaam = "test.csv", map = "data", bestandstype = "csv")
 #'
-#'
 #' }
-#'
 dom_save <- function(naam,
                      bestandsnaam = paste(Sys.Date(), naam),
                      map = NULL,
