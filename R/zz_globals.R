@@ -15,4 +15,5 @@ utils::globalVariables(c("guid",
                          "X1",
                          "wijzigingsdatum",
                          "Metadata",
-                         "Elementtype"))
+                         "Elementtype",
+                         "lower"))
