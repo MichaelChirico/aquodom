@@ -14,6 +14,9 @@ test_that("dom werkt", {
   monstertype <- dom("MonsterType", peildatum = as.Date("2021-04-03"))
   expect_equal(nrow(monstertype), 7)
 
+  monstertype <- dom("monstertype", peildatum = as.Date("2021-04-03"))
+  expect_equal(nrow(monstertype), 7)
+
   expect_lt(system.time(dom("MonsterType"))[[3]], 0.5)
 
 })

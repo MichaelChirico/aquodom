@@ -2,7 +2,7 @@
 #'
 #' Deze functie haalt een domeintabel op van www.aquo.nl.
 #'
-#' @param naam Naam van een domeintabel - hoofdlettergevoelig. Zie
+#' @param naam Naam van een domeintabel - De namen zijn niet hoofdlettergevoelig. Zie
 #'   `dom_overzicht()` voor geldige domeintabelnamen.
 #' @param peildatum Date of een character die omgezet kan worden in een Date met
 #'   `lubridate::as_date()`. De peildatum filtert de output om alleen geldige
@@ -35,6 +35,8 @@
 #'
 #' }
 dom <- function(naam, peildatum = Sys.Date()) {
+  naam <- dom_convert_case(naam)
+
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 

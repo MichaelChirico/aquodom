@@ -17,7 +17,7 @@
 #' }
 is_domeintabel <- function(namen){
   overzicht <- dom_overzicht(peildatum = NULL)
-  namen %in% overzicht$domeintabel
+  stringr::str_to_lower(namen) %in% stringr::str_to_lower(overzicht$domeintabel)
 }
 
 #' Guid van domeintabel
@@ -37,6 +37,9 @@ is_domeintabel <- function(namen){
 #'
 #' }
 dom_guid <- function(namen){
+
+  namen <- dom_convert_case(namen)
+
   overzicht <- dom_overzicht(peildatum = NULL)
   tibble::tibble(namen = namen) %>%
     dplyr::left_join(overzicht, by = c("namen" = "domeintabel")) %>%
@@ -67,6 +70,8 @@ dom_kolommen <- function(naam){
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
   overzicht <- dom_overzicht(peildatum = NULL)
+
+  naam <- dom_convert_case(naam)
 
   overzicht %>%
     dplyr::filter(domeintabel == naam) %>%
@@ -100,26 +105,19 @@ create_dom_url <- function(naam, limit = 500, offset = 0){
 
 #' Conversie van hoofdletters van domeintabel namen
 #'
-#' @param naam
+#' @param namen
 #'
-#' @return `naam` met de juiste hoofdletters.
+#' @return `namen` met de juiste hoofdletters.
 #'
 #' @noRd
 #'
-dom_convert_case <- function(naam) {
+dom_convert_case <- function(namen) {
 
-  if (length(naam) > 1) {
-    stop("`naam` dient een charactervector met lengte 1 te zijn.")
-  }
-
-  naam_correct <-
+  opzoektabel <-
     dom_overzicht() %>%
-    dplyr::select(domeintabel) %>%
     dplyr::mutate(lower = stringr::str_to_lower(domeintabel)) %>%
-    dplyr::filter(lower == stringr::str_to_lower(naam)) %>%
-    dplyr::pull(domeintabel)
+    dplyr::select(lower, domeintabel) %>%
+    tibble::deframe()
 
-  if (length(naam_correct) != 1) naam_correct <- NA_character_
-
-  naam_correct
+  unname(opzoektabel[as.character(stringr::str_to_lower(namen))])
 }

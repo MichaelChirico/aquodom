@@ -7,7 +7,7 @@
 dom(naam, peildatum = Sys.Date())
 }
 \arguments{
-\item{naam}{Naam van een domeintabel - hoofdlettergevoelig. Zie
+\item{naam}{Naam van een domeintabel - De namen zijn niet hoofdlettergevoelig. Zie
 \code{dom_overzicht()} voor geldige domeintabelnamen.}
 
 \item{peildatum}{Date of een character die omgezet kan worden in een Date met
