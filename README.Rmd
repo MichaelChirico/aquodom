@@ -41,19 +41,22 @@ devtools::install_github("RedTent/aquodom")
 
 De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling van gegevens in het waterbeheer. Met *aquodom*  (kort voor aquo-domeintabellen) is het makkelijk om via de API domeintabellen van de Aquo-standaard in R te downloaden en te gebruiken. 
 
-De belangrijkste functie van *aquodom* is `dom()`. Met deze functie kan iedere domeintabel van www.aquo.nl worden gedownload. De functie `dom_overzicht()` geeft een complete lijst van alle beschikbare domeintabellen. Beide functies hebben een optioneel argument `peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum. Met `peildatum = NULL` worden alle resultaten inclusief verouderde waarden getoond.
+De belangrijkste functies van *aquodom* zijn `dom()` en `dom_save()`. Met deze functies kan iedere domeintabel van www.aquo.nl worden gedownload. De functie `dom()` geeft de domeintabel als een dataframe. `dom_save()` doet hetzelfde maar slaat daarnaast ook de domeintabel op als xlsx- of csv-bestand. De functie `dom_overzicht()` geeft een compleet overzicht van alle beschikbare domeintabellen. 
 
-
+Alle functies hebben een optioneel argument `peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum. Met `peildatum = NULL` worden alle resultaten inclusief verouderde waarden getoond.
 
 ```{r dom}
 library(aquodom)
 
 dom("MonsterType")
 
+#De namen van domeintabellen zijn niet hoofdlettergevoelig
+all.equal(dom("MonsterType"), dom("monstertype"))
+
 # Alle domeinwaarden inclusief verouderde waarden
 dom("MonsterType", peildatum = NULL)
 
-dom_overzicht()
+head(dom_overzicht(), 3)
 
 nrow(dom_overzicht())
 # inclusief ongeldige domeintabellen
@@ -61,9 +64,16 @@ nrow(dom_overzicht(peildatum = NULL))
 
 ```
 
-## Caching
+```{r eval=FALSE}
 
-Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in beslag nemen. Daarom maakt *aquodom* gebruik van caching. Als een domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik gemaakt van de cache. In de documentatie is ook beschreven hoe het mogelijk is om een persistente cache te maken (voor gevorderden).
+dom_save("monstertype")
+
+```
+
+
+## Caching en opslaan
+
+Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in beslag nemen. Daarom maakt *aquodom* gebruik van caching. Als een domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik gemaakt van de cache. 
 
 ```{r caching}
 # De eerste keer duurt vrij lang
@@ -74,4 +84,6 @@ system.time(dom("Hoedanigheid"))
 
 
 ```
+
+Het is mogelijk om de cache persistent te maken over meerdere R-sessies. Een betere optie is echter om gebruik te maken van de functie `dom_save()` om de domeintabel op de schijf op te slaan.
 

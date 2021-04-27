@@ -37,14 +37,17 @@ van gegevens in het waterbeheer. Met *aquodom* (kort voor
 aquo-domeintabellen) is het makkelijk om via de API domeintabellen van
 de Aquo-standaard in R te downloaden en te gebruiken.
 
-De belangrijkste functie van *aquodom* is `dom()`. Met deze functie kan
-iedere domeintabel van www.aquo.nl worden gedownload. De functie
-`dom_overzicht()` geeft een complete lijst van alle beschikbare
-domeintabellen. Beide functies hebben een optioneel argument
-`peildatum`. Dit argument kan worden gebruikt om alleen domeinwaarden of
-domeintabellen te tonen die geldig zijn op de peildatum. Met
-`peildatum = NULL` worden alle resultaten inclusief verouderde waarden
-getoond.
+De belangrijkste functies van *aquodom* zijn `dom()` en `dom_save()`.
+Met deze functies kan iedere domeintabel van www.aquo.nl worden
+gedownload. De functie `dom()` geeft de domeintabel als een dataframe.
+`dom_save()` doet hetzelfde maar slaat daarnaast ook de domeintabel op
+als xlsx- of csv-bestand. De functie `dom_overzicht()` geeft een
+compleet overzicht van alle beschikbare domeintabellen.
+
+Alle functies hebben een optioneel argument `peildatum`. Dit argument
+kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen
+die geldig zijn op de peildatum. Met `peildatum = NULL` worden alle
+resultaten inclusief verouderde waarden getoond.
 
 ``` r
 library(aquodom)
@@ -61,6 +64,10 @@ dom("MonsterType")
 #> 6     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~
 #> 7     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~
 
+#De namen van domeintabellen zijn niet hoofdlettergevoelig
+all.equal(dom("MonsterType"), dom("monstertype"))
+#> [1] TRUE
+
 # Alle domeinwaarden inclusief verouderde waarden
 dom("MonsterType", peildatum = NULL)
 #> # A tibble: 8 x 6
@@ -75,21 +82,14 @@ dom("MonsterType", peildatum = NULL)
 #> 7     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~
 #> 8     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~
 
-dom_overzicht()
-#> # A tibble: 126 x 7
-#>    domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid
-#>    <chr>       <chr>            <date>          <date>           <date>         
-#>  1 Afsluitmid~ Domeintabel      2020-11-11      2016-03-12       2100-01-01     
-#>  2 Bekleding_~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
-#>  3 BekledingT~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
-#>  4 Bekledingl~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
-#>  5 Bemonsteri~ Domeintabel      2020-11-09      2011-06-10       2100-01-01     
-#>  6 Bemonsteri~ Domeintabel      2020-06-30      2011-06-11       2100-01-01     
-#>  7 Bemonsteri~ Domeintabel      2020-06-30      2011-10-06       2100-01-01     
-#>  8 BeschermdG~ Domeintabel      2020-11-09      2011-11-11       2100-01-01     
-#>  9 Besturings~ Domeintabel      2020-11-11      2011-10-15       2100-01-01     
-#> 10 Bevaarbaar~ Domeintabel      2020-06-30      2011-08-12       2100-01-01     
-#> # ... with 116 more rows, and 2 more variables: kolommen <list>, guid <chr>
+head(dom_overzicht(), 3)
+#> # A tibble: 3 x 7
+#>   domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid
+#>   <chr>       <chr>            <date>          <date>           <date>         
+#> 1 Afsluitmid~ Domeintabel      2020-11-11      2016-03-12       2100-01-01     
+#> 2 Bekleding_~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#> 3 BekledingT~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#> # ... with 2 more variables: kolommen <list>, guid <chr>
 
 nrow(dom_overzicht())
 #> [1] 126
@@ -98,23 +98,30 @@ nrow(dom_overzicht(peildatum = NULL))
 #> [1] 261
 ```
 
-## Caching
+``` r
+dom_save("monstertype")
+```
+
+## Caching en opslaan
 
 Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in
 beslag nemen. Daarom maakt *aquodom* gebruik van caching. Als een
 domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik
-gemaakt van de cache. In de documentatie is ook beschreven hoe het
-mogelijk is om een persistente cache te maken (voor gevorderden).
+gemaakt van de cache.
 
 ``` r
 # De eerste keer duurt vrij lang
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.22    0.11    6.28
+#>    0.28    0.13    3.53
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>    0.00    0.02    0.02
+#>    0.02    0.00    0.02
 ```
+
+Het is mogelijk om de cache persistent te maken over meerdere R-sessies.
+Een betere optie is echter om gebruik te maken van de functie
+`dom_save()` om de domeintabel op de schijf op te slaan.
