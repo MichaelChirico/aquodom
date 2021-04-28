@@ -1,3 +1,5 @@
+# aquodom 0.1.0
+
 # aquodom 0.0.0.9000
 
 * `dom()` - Vraag een domeintabel op.
