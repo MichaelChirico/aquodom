@@ -1,15 +1,22 @@
-#' Opslaan domeintabel op schijf
+#' Opslaan domeintabel
 #'
 #' Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestand of als .csv-bestand.
 #'
-#' @param naam Naam van een domeintabel.
+#' @inheritParams dom
+#'
 #' @param bestandsnaam Naam van het bestand om op te slaan. Eventueel als volledig pad. Default is de datum
 #' gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie worden opgegeven.
 #' @param map Naam van de map. De map moet bestaan. Optioneel.
 #' @param bestandstype "xlsx" of "csv"  Opslaan als xlsx of als csv-bestand. Default is xlsx.
-#' @param peildatum De peildatum voor de domeintabel. Default is de huidige datum.
 #'
 #' @return Slaat de domeintabel op de schijf. De domeintabel zelf wordt onzichtbaar geretourneerd.
+#'
+#' @details
+#' Voor het opslaan van een bestand als .xlsx wordt [openxlsx::write.xlsx()] gebruikt. Voor het opslaan
+#' als .csv wordt [readr::write_csv2()] gebruikt.
+#'
+#' Opgeslagen excelbestanden kunnen ingelezen worden met [openxlsx::read.xlsx()] of [readxl::read_excel()].
+#' csv-bestanden kunnen worden ingelezen met [readr::read_csv2()]
 #'
 #' @family domeintabellen
 #'

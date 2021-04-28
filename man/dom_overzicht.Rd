@@ -16,13 +16,13 @@ domeintabellen ongeacht de geldigheid weer te geven.}
 Een tibble met een overzicht van alle domeintabellen. Het overzicht
 bevat de volgende kolommen:
 \itemize{
-\item domeintabel - Naam van de domeintabel
-\item domeintabelsoort - Het type domeintabel
-\item wijzigingsdatum - Datum van de laatste wijziging van de tabel.
-\item begin_geldigheid - Datum van het begin van de geldigheid van de domeintabel
-\item eind_geldigheid - Datum van het eind van de geldigheid van de domeintabel
-\item kolommen - Een vector met de kolomnamen van de domeintabel.
-\item guid - De guid van de domeintabel
+\item \code{domeintabel} - Naam van de domeintabel.
+\item \code{domeintabelsoort} - Het type domeintabel.
+\item \code{wijzigingsdatum} - Datum van de laatste wijziging van de tabel.
+\item \code{begin_geldigheid} - Datum van het begin van de geldigheid van de domeintabel.
+\item \code{eind_geldigheid} - Datum van het eind van de geldigheid van de domeintabel.
+\item \code{kolommen} - Een vector met de kolomnamen van de domeintabel.
+\item \code{guid} - De guid van de domeintabel.
 }
 }
 \description{

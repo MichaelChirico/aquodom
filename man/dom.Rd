@@ -2,7 +2,7 @@
 % Please edit documentation in R/dom.R
 \name{dom}
 \alias{dom}
-\title{Opvragen van domeintabellen}
+\title{Opvragen domeintabel}
 \usage{
 dom(naam, peildatum = Sys.Date())
 }

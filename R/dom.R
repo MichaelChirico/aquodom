@@ -1,4 +1,4 @@
-#' Opvragen van domeintabellen
+#' Opvragen domeintabel
 #'
 #' Deze functie haalt een domeintabel op van www.aquo.nl.
 #'

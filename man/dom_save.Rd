@@ -2,7 +2,7 @@
 % Please edit documentation in R/dom_save.R
 \name{dom_save}
 \alias{dom_save}
-\title{Opslaan domeintabel op schijf}
+\title{Opslaan domeintabel}
 \usage{
 dom_save(
   naam,
@@ -13,7 +13,8 @@ dom_save(
 )
 }
 \arguments{
-\item{naam}{Naam van een domeintabel.}
+\item{naam}{Naam van een domeintabel - De namen zijn niet hoofdlettergevoelig. Zie
+\code{dom_overzicht()} voor geldige domeintabelnamen.}
 
 \item{bestandsnaam}{Naam van het bestand om op te slaan. Eventueel als volledig pad. Default is de datum
 gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie worden opgegeven.}
@@ -22,13 +23,23 @@ gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie wor
 
 \item{bestandstype}{"xlsx" of "csv"  Opslaan als xlsx of als csv-bestand. Default is xlsx.}
 
-\item{peildatum}{De peildatum voor de domeintabel. Default is de huidige datum.}
+\item{peildatum}{Date of een character die omgezet kan worden in een Date met
+\code{lubridate::as_date()}. De peildatum filtert de output om alleen geldige
+domeinwaarden op de peildatum weer te geven. Gebruik \code{NULL} om alle
+domeinwaarden ongeacht de geldigheid weer te geven.}
 }
 \value{
 Slaat de domeintabel op de schijf. De domeintabel zelf wordt onzichtbaar geretourneerd.
 }
 \description{
 Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestand of als .csv-bestand.
+}
+\details{
+Voor het opslaan van een bestand als .xlsx wordt \code{\link[openxlsx:write.xlsx]{openxlsx::write.xlsx()}} gebruikt. Voor het opslaan
+als .csv wordt \code{\link[readr:write_delim]{readr::write_csv2()}} gebruikt.
+
+Opgeslagen excelbestanden kunnen ingelezen worden met \code{\link[openxlsx:read.xlsx]{openxlsx::read.xlsx()}} of \code{\link[readxl:read_excel]{readxl::read_excel()}}.
+csv-bestanden kunnen worden ingelezen met \code{\link[readr:read_delim]{readr::read_csv2()}}
 }
 \examples{
 

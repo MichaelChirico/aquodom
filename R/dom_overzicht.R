@@ -16,13 +16,13 @@
 #' @return Een tibble met een overzicht van alle domeintabellen. Het overzicht
 #'   bevat de volgende kolommen:
 #'
-#'   - domeintabel - Naam van de domeintabel
-#'   - domeintabelsoort - Het type domeintabel
-#'   - wijzigingsdatum - Datum van de laatste wijziging van de tabel.
-#'   - begin_geldigheid - Datum van het begin van de geldigheid van de domeintabel
-#'   - eind_geldigheid - Datum van het eind van de geldigheid van de domeintabel
-#'   - kolommen - Een vector met de kolomnamen van de domeintabel.
-#'   - guid - De guid van de domeintabel
+#'   - `domeintabel` - Naam van de domeintabel.
+#'   - `domeintabelsoort` - Het type domeintabel.
+#'   - `wijzigingsdatum` - Datum van de laatste wijziging van de tabel.
+#'   - `begin_geldigheid` - Datum van het begin van de geldigheid van de domeintabel.
+#'   - `eind_geldigheid` - Datum van het eind van de geldigheid van de domeintabel.
+#'   - `kolommen` - Een vector met de kolomnamen van de domeintabel.
+#'   - `guid` - De guid van de domeintabel.
 #'
 #' @family domeintabellen
 #'
