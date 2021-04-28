@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Opvragen domeintabel — dom • aquodom</title>
+<title>Opslaan domeintabel — dom_save • aquodom</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Opvragen domeintabel — dom" />
-<meta property="og:description" content="Deze functie haalt een domeintabel op van www.aquo.nl." />
+<meta property="og:title" content="Opslaan domeintabel — dom_save" />
+<meta property="og:description" content="Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestand of als .csv-bestand." />
 
 
 
@@ -111,16 +111,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Opvragen domeintabel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RedTent/aquodom/blob/master/R/dom.R'><code>R/dom.R</code></a></small>
-    <div class="hidden name"><code>dom.Rd</code></div>
+    <h1>Opslaan domeintabel</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RedTent/aquodom/blob/master/R/dom_save.R'><code>R/dom_save.R</code></a></small>
+    <div class="hidden name"><code>dom_save.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Deze functie haalt een domeintabel op van www.aquo.nl.</p>
+    <p>Met deze functie is het mogelijk om een domeintabel op te slaan als .xlsx-bestand of als .csv-bestand.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dom</span>(<span class='no'>naam</span>, <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
+    <pre class="usage"><span class='fu'>dom_save</span>(
+  <span class='no'>naam</span>,
+  <span class='kw'>bestandsnaam</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(), <span class='no'>naam</span>),
+  <span class='kw'>map</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bestandstype</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"xlsx"</span>, <span class='st'>"csv"</span>),
+  <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,6 +135,19 @@
       <th>naam</th>
       <td><p>Naam van een domeintabel - De namen zijn niet hoofdlettergevoelig. Zie
 <code><a href='dom_overzicht.html'>dom_overzicht()</a></code> voor geldige domeintabelnamen.</p></td>
+    </tr>
+    <tr>
+      <th>bestandsnaam</th>
+      <td><p>Naam van het bestand om op te slaan. Eventueel als volledig pad. Default is de datum
+gevolgd door de naam van de domeintabel. De bestandsnaam mag zonder extensie worden opgegeven.</p></td>
+    </tr>
+    <tr>
+      <th>map</th>
+      <td><p>Naam van de map. De map moet bestaan. Optioneel.</p></td>
+    </tr>
+    <tr>
+      <th>bestandstype</th>
+      <td><p>"xlsx" of "csv"  Opslaan als xlsx of als csv-bestand. Default is xlsx.</p></td>
     </tr>
     <tr>
       <th>peildatum</th>
@@ -141,26 +160,24 @@ domeinwaarden ongeacht de geldigheid weer te geven.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Een tibble met een met domeinwaarden. De kolommen zijn afhankelijk
-van de betreffende domeintabel.</p>
-    <h2 class="hasAnchor" id="caching"><a class="anchor" href="#caching"></a>Caching</h2>
+    <p>Slaat de domeintabel op de schijf. De domeintabel zelf wordt onzichtbaar geretourneerd.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Deze functie maakt gebruik van caching voor het
-optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
-Hiervoor wordt de map <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> gebruikt als cache. Deze map wordt na
-elke R-sessie verwijderd.</p>
+    <p>Voor het opslaan van een bestand als .xlsx wordt <code><a href='https://rdrr.io/pkg/openxlsx/man/write.xlsx.html'>openxlsx::write.xlsx()</a></code> gebruikt. Voor het opslaan
+als .csv wordt <code><a href='https://readr.tidyverse.org/reference/write_delim.html'>readr::write_csv2()</a></code> gebruikt.</p>
+<p>Opgeslagen excelbestanden kunnen ingelezen worden met <code><a href='https://rdrr.io/pkg/openxlsx/man/read.xlsx.html'>openxlsx::read.xlsx()</a></code> of <code><a href='https://readxl.tidyverse.org/reference/read_excel.html'>readxl::read_excel()</a></code>.
+csv-bestanden kunnen worden ingelezen met <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_csv2()</a></code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other domeintabellen: 
 <code><a href='dom_overzicht.html'>dom_overzicht</a>()</code>,
-<code><a href='dom_save.html'>dom_save</a>()</code></p></div>
+<code><a href='dom.html'>dom</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-
-<span class='fu'>dom</span>(<span class='st'>"MonsterType"</span>)
-<span class='fu'>dom</span>(<span class='st'>"MonsterType"</span>, <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())
-<span class='fu'>dom</span>(<span class='st'>"MonsterType"</span>, <span class='kw'>peildatum</span> <span class='kw'>=</span> <span class='st'>"2021-04-05"</span>)
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+ <span class='fu'>dom_save</span>(<span class='st'>"MonsterType"</span>)
+ <span class='fu'>dom_save</span>(<span class='st'>"MonsterType"</span>, <span class='kw'>bestandsnaam</span> <span class='kw'>=</span> <span class='st'>"test.csv"</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"data"</span>, <span class='kw'>bestandstype</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
 
 }</div></pre>
   </div>

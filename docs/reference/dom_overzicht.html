@@ -73,7 +73,7 @@ inclusief historische tabellen, op www.aquo.nl." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">aquodom</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -140,25 +140,26 @@ domeintabellen ongeacht de geldigheid weer te geven.</p></td>
 
     <p>Een tibble met een overzicht van alle domeintabellen. Het overzicht
 bevat de volgende kolommen:</p><ul>
-<li><p>domeintabel - Naam van de domeintabel</p></li>
-<li><p>domeintabelsoort - Het type domeintabel</p></li>
-<li><p>wijzigingsdatum - Datum van de laatste wijziging van de tabel.</p></li>
-<li><p>begin_geldigheid - Datum van het begin van de geldigheid van de domeintabel</p></li>
-<li><p>eind_geldigheid - Datum van het eind van de geldigheid van de domeintabel</p></li>
-<li><p>kolommen - Een vector met de kolomnamen van de domeintabel.</p></li>
-<li><p>guid - De guid van de domeintabel</p></li>
+<li><p><code>domeintabel</code> - Naam van de domeintabel.</p></li>
+<li><p><code>domeintabelsoort</code> - Het type domeintabel.</p></li>
+<li><p><code>wijzigingsdatum</code> - Datum van de laatste wijziging van de tabel.</p></li>
+<li><p><code>begin_geldigheid</code> - Datum van het begin van de geldigheid van de domeintabel.</p></li>
+<li><p><code>eind_geldigheid</code> - Datum van het eind van de geldigheid van de domeintabel.</p></li>
+<li><p><code>kolommen</code> - Een vector met de kolomnamen van de domeintabel.</p></li>
+<li><p><code>guid</code> - De guid van de domeintabel.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="caching"><a class="anchor" href="#caching"></a>Caching</h2>
 
-    <p>Deze functie maakt gebruik van cachging voor het
+    <p>Deze functie maakt gebruik van caching voor het
 optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
-Standaard wordt de map <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> gebruikt als cache. Deze map wordt na
-elke R-sessie verwijderd. Voor een persistente cache kan een zelfgekozen map
-worden gebruikt. Deze map kan worden ingesteld met
-<code><a href='https://rdrr.io/r/base/options.html'>options(aquodom.cache_dir = "mijn_cache_dir")</a></code>. <strong>Let op</strong> Deze cache wordt
-niet automatisch gewist. Dit kan ertoe leiden dat deze functie met verouderde
-data werkt. Deze optie dient dus met enige voorzichtigheid gebruikt te worden.</p>
+Hiervoor wordt de map <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code> gebruikt als cache. Deze map wordt na
+elke R-sessie verwijderd.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other domeintabellen: 
+<code><a href='dom_save.html'>dom_save</a>()</code>,
+<code><a href='dom.html'>dom</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
