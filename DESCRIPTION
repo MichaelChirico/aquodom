@@ -1,15 +1,15 @@
 Package: aquodom
-Title: Toegang tot de Aquo-domeintabellen vanuit R
+Title: Access to Aquo domaintables from R (Dutch)
 Version: 0.1.0
 Authors@R: 
     person(given = "Johan",
            family = "van Tent",
            role = c("aut", "cre"),
            email = "tentvanjohan@hotmail.com")
-Description: De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling 
-    van gegevens in het waterbeheer. Met *aquodom*  (kort voor aquo-domeintabellen) 
-    is het makkelijk om va de API domeintabellen van de Aquo-standaard in R te 
-    downloaden en te gebruiken.
+Description: The Aquo Standard is the Dutch Standard for the exchange of 
+    data in water management. With *aquodom* (short for aquo domaintables) 
+    it is easy to exploit the API to download domaintables of the Aquo 
+    Standard and use them in R.
 Language: NL    
 License: MIT + file LICENSE
 Encoding: UTF-8
