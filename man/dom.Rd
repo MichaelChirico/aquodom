@@ -23,15 +23,10 @@ van de betreffende domeintabel.
 Deze functie haalt een domeintabel op van www.aquo.nl.
 }
 \section{Caching}{
- Deze functie maakt gebruik van cachging voor het
+ Deze functie maakt gebruik van caching voor het
 optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
-Standaard wordt de map \code{tempdir()} gebruikt als cache. Deze map wordt na
-elke R-sessie verwijderd. Voor een persistente cache kan een zelfgekozen
-map worden gebruikt. Deze map kan worden ingesteld met
-\code{options(aquodom.cache_dir = "mijn_cache_dir")}. \strong{Let op} Deze cache
-wordt niet automatisch gewist. Dit kan ertoe leiden dat deze functie met
-verouderde data werkt. Deze optie dient dus met enige voorzichtigheid
-gebruikt te worden.
+Hiervoor wordt de map \code{tempdir()} gebruikt als cache. Deze map wordt na
+elke R-sessie verwijderd.
 }
 
 \examples{

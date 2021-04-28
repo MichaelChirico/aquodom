@@ -107,21 +107,19 @@ dom_save("monstertype")
 Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in
 beslag nemen. Daarom maakt *aquodom* gebruik van caching. Als een
 domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik
-gemaakt van de cache.
+gemaakt van de cache. Voor het gebruik van dezelfde domeintabel in
+verschillende R-sessies kan de domeintabel het beste opgeslagen worden,
+bijv. met `dom_save()`.
 
 ``` r
 # De eerste keer duurt vrij lang
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.28    0.13    3.53
+#>    0.21    0.17    2.78
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>    0.02    0.00    0.02
+#>    0.01    0.00    0.01
 ```
-
-Het is mogelijk om de cache persistent te maken over meerdere R-sessies.
-Een betere optie is echter om gebruik te maken van de functie
-`dom_save()` om de domeintabel op de schijf op te slaan.

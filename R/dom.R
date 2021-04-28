@@ -9,15 +9,10 @@
 #'   domeinwaarden op de peildatum weer te geven. Gebruik `NULL` om alle
 #'   domeinwaarden ongeacht de geldigheid weer te geven.
 #'
-#' @section Caching: Deze functie maakt gebruik van cachging voor het
+#' @section Caching: Deze functie maakt gebruik van caching voor het
 #'   optimaliseren van snelheid en om de aquo-server niet onnodig te belasten.
-#'   Standaard wordt de map `tempdir()` gebruikt als cache. Deze map wordt na
-#'   elke R-sessie verwijderd. Voor een persistente cache kan een zelfgekozen
-#'   map worden gebruikt. Deze map kan worden ingesteld met
-#'   `options(aquodom.cache_dir = "mijn_cache_dir")`. **Let op** Deze cache
-#'   wordt niet automatisch gewist. Dit kan ertoe leiden dat deze functie met
-#'   verouderde data werkt. Deze optie dient dus met enige voorzichtigheid
-#'   gebruikt te worden.
+#'   Hiervoor wordt de map `tempdir()` gebruikt als cache. Deze map wordt na
+#'   elke R-sessie verwijderd.
 #'
 #' @return Een tibble met een met domeinwaarden. De kolommen zijn afhankelijk
 #'   van de betreffende domeintabel.
@@ -40,8 +35,7 @@ dom <- function(naam, peildatum = Sys.Date()) {
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
 
-  my_cache <- getOption("aquodom.cache_dir")
-  dom_m <- memoise::memoise(dom_basis, cache = cachem::cache_disk(dir = my_cache))
+  dom_m <- memoise::memoise(dom_basis, cache = cachem::cache_disk(dir = tempdir()))
 
   domeintabel <- suppressWarnings(dom_m(naam))
 
