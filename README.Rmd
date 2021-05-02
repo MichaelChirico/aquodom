@@ -24,10 +24,9 @@ Met *aquodom* is het op eenvoudige wijze mogelijk om de aquo-domeintabellen te d
 
 ## Installatie
 
-*aquodom* is te installeren vanaf CRAN met (nog niet):
+*aquodom* is te installeren vanaf CRAN met:
 
 ``` r
-# Nog niet op CRAN
 install.packages("aquodom") 
 ```
 

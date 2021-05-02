@@ -15,10 +15,9 @@ aquo-domeintabellen te downloaden en te gebruiken in R.
 
 ## Installatie
 
-*aquodom* is te installeren vanaf CRAN met (nog niet):
+*aquodom* is te installeren vanaf CRAN met:
 
 ``` r
-# Nog niet op CRAN
 install.packages("aquodom") 
 ```
 
@@ -116,10 +115,10 @@ bijv. met `dom_save()`.
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.21    0.17    2.78
+#>    0.25    0.18    2.65
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>    0.01    0.00    0.01
+#>    0.02    0.00    0.02
 ```
