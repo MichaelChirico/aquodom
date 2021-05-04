@@ -9,3 +9,7 @@
 0 errors | 0 warnings | 1 note
 
 * This is the first release of aquodom.
+
+## Bugfixes
+
+* Added API link to DESCRIPTION as suggested by CRAN maintainer
