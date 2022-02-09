@@ -63,10 +63,14 @@ dom_overzicht_basis <- function() {
 
   overzicht <- req %>%
     httr::content(as = "text") %>%
-    readr::read_csv2(locale = readr::locale(decimal_mark = ",", grouping_mark = ".")) %>%
-    dplyr::select(domeintabel = Voorkeurslabel, domeintabelsoort = Elementtype,
-                  wijzigingsdatum = Wijzigingsdatum, begin_geldigheid = `Begin geldigheid`,
-                  eind_geldigheid = `Eind geldigheid`, kolommen = Metadata, guid = X1 ) %>%
+    readr::read_csv2(locale = readr::locale(decimal_mark = ",", grouping_mark = "."), show_col_types = FALSE) %>%
+    dplyr::select(domeintabel = Voorkeurslabel,
+                  domeintabelsoort = Elementtype,
+                  wijzigingsdatum = Wijzigingsdatum,
+                  begin_geldigheid = `Begin geldigheid`,
+                  eind_geldigheid = `Eind geldigheid`,
+                  kolommen = Metadata,
+                  guid = ...1 ) %>%
     dplyr::mutate(dplyr::across(.cols = c(wijzigingsdatum, begin_geldigheid, eind_geldigheid),
                                 .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
     dplyr::mutate(kolommen = stringr::str_split(kolommen, ","))

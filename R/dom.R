@@ -64,7 +64,7 @@ dom_basis <- function(naam){
       dom_deel_url %>%
       httr::GET() %>%
       httr::content(as = "text") %>%
-      readr::read_csv2(locale = readr::locale(decimal_mark = ",", grouping_mark = "."))
+      readr::read_csv2(locale = readr::locale(decimal_mark = ",", grouping_mark = "."), show_col_types = FALSE)
 
     res <- dplyr::bind_rows(res, deel_res)
 
@@ -77,7 +77,7 @@ dom_basis <- function(naam){
 
   res <-
     res %>%
-    dplyr::rename_with(.fn = ~"Guid", .cols = dplyr::any_of("X1")) %>%
+    dplyr::rename_with(.fn = ~"Guid", .cols = dplyr::any_of("...1")) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_replace(x, pattern = " ", "_")) %>%
     dplyr::rename_with(.fn = stringr::str_to_lower) %>%
     dplyr::mutate(dplyr::across(.cols = dplyr::contains("geldigheid"),
