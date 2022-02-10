@@ -5,9 +5,11 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/aquodom)](https://CRAN.R-project.org/package=aquodom)
+[![R-CMD-check](https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/aquodom/actions)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg)](https://github.com/RedTent/aquodom/actions)
 <!-- badges: end -->
 
 Met *aquodom* is het op eenvoudige wijze mogelijk om de
@@ -115,7 +117,7 @@ bijv. met `dom_save()`.
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.25    0.18    2.65
+#>    0.27    0.14    2.06
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))

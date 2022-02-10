@@ -14,8 +14,8 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Access to Aquo domaintables from R (Dutch)">
 <meta property="og:description" content="The Aquo Standard is the Dutch Standard for the exchange of 
     data in water management. With *aquodom* (short for aquo domaintables) 
-    it is easy to exploit the API to download domaintables of the Aquo 
-    Standard and use them in R.">
+    it is easy to exploit the API (&lt;https://www.aquo.nl&gt;) to download domaintables 
+    of the Aquo Standard and use them in R.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -81,9 +81,8 @@
 <div id="installatie" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installatie" class="anchor"></a>Installatie</h2>
-<p><em>aquodom</em> is te installeren vanaf CRAN met (nog niet):</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># Nog niet op CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"aquodom"</span>)</pre></div>
+<p><em>aquodom</em> is te installeren vanaf CRAN met:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"aquodom"</span>)</pre></div>
 <p>De ontwikkelversie is te installeren van <a href="https://github.com/RedTent/aquodom">GitHub</a> met:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"RedTent/aquodom"</span>)</pre></div>
@@ -150,12 +149,12 @@
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
 <span class="co">#&gt; ..</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.21    0.17    2.78</span>
+<span class="co">#&gt;    0.27    0.14    2.06</span>
 
 <span class="co"># De tweede keer gaat veel sneller</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span></pre></div>
+<span class="co">#&gt;    0.02    0.00    0.02</span></pre></div>
 </div>
 </div>
   </div>
@@ -164,6 +163,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=aquodom">https://​cloud.r-project.org/​package=aquodom</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/RedTent/aquodom/">https://​github.com/​RedTent/​aquodom/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/RedTent/aquodom/issues">https://​github.com/​RedTent/​aquodom/​issues</a>
@@ -187,8 +188,9 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=aquodom"><img src="https://www.r-pkg.org/badges/version/aquodom" alt="CRAN status"></a></li>
 <li><a href="https://github.com/RedTent/aquodom/actions"><img src="https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 </div>
