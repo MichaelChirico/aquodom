@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,18 +36,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">aquodom</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RedTent/aquodom/">
+  <a href="https://github.com/RedTent/aquodom/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -72,30 +68,33 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="aquodom" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#aquodom" class="anchor"></a>aquodom</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="aquodom">aquodom<a class="anchor" aria-label="anchor" href="#aquodom"></a>
+</h1></div>
 <!-- badges: start -->
 
 <p>Met <em>aquodom</em> is het op eenvoudige wijze mogelijk om de aquo-domeintabellen te downloaden en te gebruiken in R.</p>
-<div id="installatie" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installatie" class="anchor"></a>Installatie</h2>
+<div class="section level2">
+<h2 id="installatie">Installatie<a class="anchor" aria-label="anchor" href="#installatie"></a>
+</h2>
 <p><em>aquodom</em> is te installeren vanaf CRAN met:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"aquodom"</span>)</pre></div>
-<p>De ontwikkelversie is te installeren van <a href="https://github.com/RedTent/aquodom">GitHub</a> met:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"RedTent/aquodom"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"aquodom"</span><span class="op">)</span> </code></pre></div>
+<p>De ontwikkelversie is te installeren van <a href="https://github.com/RedTent/aquodom" class="external-link">GitHub</a> met:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"RedTent/aquodom"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="aquo-domeintabellen" class="section level2">
-<h2 class="hasAnchor">
-<a href="#aquo-domeintabellen" class="anchor"></a>Aquo-domeintabellen</h2>
+<div class="section level2">
+<h2 id="aquo-domeintabellen">Aquo-domeintabellen<a class="anchor" aria-label="anchor" href="#aquo-domeintabellen"></a>
+</h2>
 <p>De Aquo-standaard vormt de Nederlandse standaard voor de uitwisseling van gegevens in het waterbeheer. Met <em>aquodom</em> (kort voor aquo-domeintabellen) is het makkelijk om via de API domeintabellen van de Aquo-standaard in R te downloaden en te gebruiken.</p>
 <p>De belangrijkste functies van <em>aquodom</em> zijn <code><a href="reference/dom.html">dom()</a></code> en <code><a href="reference/dom_save.html">dom_save()</a></code>. Met deze functies kan iedere domeintabel van www.aquo.nl worden gedownload. De functie <code><a href="reference/dom.html">dom()</a></code> geeft de domeintabel als een dataframe. <code><a href="reference/dom_save.html">dom_save()</a></code> doet hetzelfde maar slaat daarnaast ook de domeintabel op als xlsx- of csv-bestand. De functie <code><a href="reference/dom_overzicht.html">dom_overzicht()</a></code> geeft een compleet overzicht van alle beschikbare domeintabellen.</p>
 <p>Alle functies hebben een optioneel argument <code>peildatum</code>. Dit argument kan worden gebruikt om alleen domeinwaarden of domeintabellen te tonen die geldig zijn op de peildatum. Met <code>peildatum = NULL</code> worden alle resultaten inclusief verouderde waarden getoond.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">aquodom</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://redtent.github.io/aquodom/" class="external-link">aquodom</a></span><span class="op">)</span>
 
-<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>)
+<span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"MonsterType"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 x 6</span>
 <span class="co">#&gt;      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;           &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;         </span>
@@ -108,11 +107,11 @@
 <span class="co">#&gt; 7     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~</span>
 
 <span class="co">#De namen van domeintabellen zijn niet hoofdlettergevoelig</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>), <span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"monstertype"</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"MonsterType"</span><span class="op">)</span>, <span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"monstertype"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
 
 <span class="co"># Alle domeinwaarden inclusief verouderde waarden</span>
-<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"MonsterType"</span>, <span class="kw">peildatum</span> <span class="kw">=</span> <span class="kw">NULL</span>)
+<span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"MonsterType"</span>, peildatum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 8 x 6</span>
 <span class="co">#&gt;      id omschrijving   begin_geldigheid eind_geldigheid guid      gerelateerd   </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;           &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;         </span>
@@ -125,7 +124,7 @@
 <span class="co">#&gt; 7     1 veldmonster    2015-11-18       2100-01-01      Id-74dd8~ Id-3e9918e3-4~</span>
 <span class="co">#&gt; 8     7 zeefmonster    2015-11-18       2100-01-01      Id-8d483~ Id-63ac95ff-1~</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>(), <span class="fl">3</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 7</span>
 <span class="co">#&gt;   domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;            &lt;date&gt;          &lt;date&gt;           &lt;date&gt;         </span>
@@ -134,75 +133,87 @@
 <span class="co">#&gt; 3 BekledingT~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     </span>
 <span class="co">#&gt; # ... with 2 more variables: kolommen &lt;list&gt;, guid &lt;chr&gt;</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>())
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 126</span>
 <span class="co"># inclusief ongeldige domeintabellen</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span>(<span class="kw">peildatum</span> <span class="kw">=</span> <span class="kw">NULL</span>))
-<span class="co">#&gt; [1] 261</span></pre></div>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="reference/dom_save.html">dom_save</a></span>(<span class="st">"monstertype"</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="reference/dom_overzicht.html">dom_overzicht</a></span><span class="op">(</span>peildatum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 261</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/dom_save.html">dom_save</a></span><span class="op">(</span><span class="st">"monstertype"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="caching-en-opslaan" class="section level2">
-<h2 class="hasAnchor">
-<a href="#caching-en-opslaan" class="anchor"></a>Caching en opslaan</h2>
+<div class="section level2">
+<h2 id="caching-en-opslaan">Caching en opslaan<a class="anchor" aria-label="anchor" href="#caching-en-opslaan"></a>
+</h2>
 <p>Het downloaden van grotere domeintabellen kan behoorlijk wat tijd in beslag nemen. Daarom maakt <em>aquodom</em> gebruik van caching. Als een domeintabel eenmaal is gedownload wordt in dezelfde R-sessie gebruik gemaakt van de cache. Voor het gebruik van dezelfde domeintabel in verschillende R-sessies kan de domeintabel het beste opgeslagen worden, bijv. met <code><a href="reference/dom_save.html">dom_save()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># De eerste keer duurt vrij lang</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># De eerste keer duurt vrij lang</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"Hoedanigheid"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; ..</span>
 <span class="co">#&gt;    user  system elapsed </span>
 <span class="co">#&gt;    0.27    0.14    2.06</span>
 
 <span class="co"># De tweede keer gaat veel sneller</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/dom.html">dom</a></span>(<span class="st">"Hoedanigheid"</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="reference/dom.html">dom</a></span><span class="op">(</span><span class="st">"Hoedanigheid"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.02    0.00    0.02</span></pre></div>
+<span class="co">#&gt;    0.02    0.00    0.02</span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=aquodom">https://​cloud.r-project.org/​package=aquodom</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/RedTent/aquodom/">https://​github.com/​RedTent/​aquodom/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/RedTent/aquodom/issues">https://​github.com/​RedTent/​aquodom/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=aquodom" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/RedTent/aquodom/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/RedTent/aquodom/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing aquodom</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Johan van Tent <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=aquodom"><img src="https://www.r-pkg.org/badges/version/aquodom" alt="CRAN status"></a></li>
-<li><a href="https://github.com/RedTent/aquodom/actions"><img src="https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=aquodom" class="external-link"><img src="https://www.r-pkg.org/badges/version/aquodom" alt="CRAN status"></a></li>
+<li><a href="https://github.com/RedTent/aquodom/actions" class="external-link"><img src="https://github.com/RedTent/aquodom/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Johan van Tent.</p>
+  <p></p>
+<p>Developed by Johan van Tent.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -210,6 +221,8 @@
 
   
 
+
+  
 
   </body>
 </html>
