@@ -30,10 +30,11 @@
 #'
 #' }
 dom <- function(naam, peildatum = Sys.Date()) {
-  naam <- dom_convert_case(naam)
 
   if (length(naam) != 1) stop("`naam` dient een vector met lengte 1 te zijn")
   if (!is_domeintabel(naam)) stop(paste(naam, "is geen geldige domeintabelnaam"))
+
+  naam <- dom_convert_case(naam)
 
   dom_m <- memoise::memoise(dom_basis, cache = cachem::cache_disk(dir = tempdir()))
 
@@ -75,13 +76,16 @@ dom_basis <- function(naam){
   }
   cat("\n")
 
+  datum_formats <- c("dBY HMS", "dBY", "dmY HMS", "Ymd HMS", "Ymd", "dmY")
+
   res <-
     res %>%
     dplyr::rename_with(.fn = ~"guid", .cols = dplyr::any_of(c("...1", "X1"))) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_replace(x, pattern = " ", "_")) %>%
     dplyr::rename_with(.fn = stringr::str_to_lower) %>%
-    dplyr::mutate(dplyr::across(.cols = dplyr::contains("geldigheid"),
-                                .fns = ~lubridate::as_date(.x, format = "%d %B %Y %H:%M:%S"))) %>%
+    dplyr::mutate(dplyr::across(.cols = dplyr::contains(c("geldigheid", "datum")),
+                                .fns = ~lubridate::as_date(lubridate::parse_date_time(.x, orders = datum_formats)))
+                  ) %>%
     dplyr::relocate(dplyr::any_of(c("id", "codes", "cijfercode", "omschrijving", "begin_geldigheid", "eind_geldigheid")))
 
   return(res)

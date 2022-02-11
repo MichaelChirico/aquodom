@@ -114,7 +114,7 @@ create_dom_url <- function(naam, limit = 500, offset = 0){
 dom_convert_case <- function(namen) {
 
   opzoektabel <-
-    dom_overzicht() %>%
+    dom_overzicht(peildatum = NULL) %>%
     dplyr::mutate(lower = stringr::str_to_lower(domeintabel)) %>%
     dplyr::select(lower, domeintabel) %>%
     tibble::deframe()
