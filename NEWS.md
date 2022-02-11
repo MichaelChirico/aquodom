@@ -1,4 +1,4 @@
-# aquodom (development version)
+# aquodom 0.1.1
 
 ## Bugfixes
 
