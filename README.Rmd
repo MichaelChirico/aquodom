@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-Met *aquodom* is het op eenvoudige wijze mogelijk om de aquo-domeintabellen te downloaden en te gebruiken in R.
+Met *aquodom* is het op eenvoudige wijze mogelijk om de aquo-domeintabellen te downloaden en te gebruiken in R. De website voor *aquodom* is te vinden via [https://redtent.github.io/aquodom](https://redtent.github.io/aquodom).
 
 ## Installatie
 

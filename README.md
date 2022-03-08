@@ -13,7 +13,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 Met *aquodom* is het op eenvoudige wijze mogelijk om de
-aquo-domeintabellen te downloaden en te gebruiken in R.
+aquo-domeintabellen te downloaden en te gebruiken in R. De website voor
+*aquodom* is te vinden via <https://redtent.github.io/aquodom>.
 
 ## Installatie
 
@@ -87,19 +88,20 @@ head(dom_overzicht(), 3)
 #> # A tibble: 3 x 7
 #>   domeintabel domeintabelsoort wijzigingsdatum begin_geldigheid eind_geldigheid
 #>   <chr>       <chr>            <date>          <date>           <date>         
-#> 1 Afsluitmid~ Domeintabel      2020-11-11      2016-03-12       2100-01-01     
-#> 2 Bekleding_~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
-#> 3 BekledingT~ Domeintabel      2020-06-30      2016-03-12       2100-01-01     
+#> 1 Afsluitmid~ Domeintabel      2021-07-07      2016-03-12       2100-01-01     
+#> 2 Bekleding_~ Domeintabel      2021-07-07      2016-03-12       2100-01-01     
+#> 3 BekledingT~ Domeintabel      2021-07-07      2016-03-12       2100-01-01     
 #> # ... with 2 more variables: kolommen <list>, guid <chr>
 
 nrow(dom_overzicht())
-#> [1] 126
+#> [1] 132
 # inclusief ongeldige domeintabellen
 nrow(dom_overzicht(peildatum = NULL))
 #> [1] 261
 ```
 
 ``` r
+
 dom_save("monstertype")
 ```
 
@@ -117,10 +119,10 @@ bijv. met `dom_save()`.
 system.time(dom("Hoedanigheid"))
 #> ..
 #>    user  system elapsed 
-#>    0.27    0.14    2.06
+#>    2.05    1.02    6.22
 
 # De tweede keer gaat veel sneller
 system.time(dom("Hoedanigheid"))
 #>    user  system elapsed 
-#>    0.02    0.00    0.02
+#>    0.05    0.05    0.11
 ```
